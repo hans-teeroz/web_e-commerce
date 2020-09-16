@@ -34,7 +34,7 @@ Route::get('bai-viet', 'ArticleController@getListArticle')->name('get.list.artic
 Route::prefix('shopping')->group(function (){
     Route::get('/add/{id}','ShoppingCartController@addProduct')->name('add.shopping.cart');
     Route::get('/delete/{id}','ShoppingCartController@deleteProductItem')->name('delete.shopping.cart');
-    Route::get('/update/{id}','ShoppingCartController@updateProductItem')->name('update.shopping.cart');
+    Route::get('/update','ShoppingCartController@updateProductItem')->name('update.shopping.cart');
     Route::get('danh-sach','ShoppingCartController@getListShoppingCart')->name('get.list.shopping.cart');
 });
 

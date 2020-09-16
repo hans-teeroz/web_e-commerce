@@ -43,9 +43,10 @@ class ShoppingCartController extends FrontendController
         return redirect()->back();
     }
 
-    public function updateProductItem($key)
+    public function updateProductItem(Request $request)
     {
-        \Cart::update($key, 'pro_sale');
+        //dd($request->all());
+        \Cart::update($request->key, $request->qty );
         return redirect()->back();
     }
 

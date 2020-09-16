@@ -192,5 +192,6 @@
 <!-- main js
 ============================================ -->
 <script src="{{asset('themes_template/js/main.js')}}"></script>
+@yield('script')
 </body>
 </html>

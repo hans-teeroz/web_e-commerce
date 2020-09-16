@@ -35,9 +35,7 @@
                                     </figure>
                                 </td>
                                 <td>
-                                    <a href="{{route('add.shopping.cart',$key)}}"> - </a>
-                                    <input type="number" class="form-control" name="pro_sale" value="{{$product->qty}}" placeholder="10">
-                                    <a href="{{route('update.shopping.cart',$key)}}"> + </a>
+                                    <input type="number" class="form-control" name="pro_sale" value="{{$product->qty}}" onchange="updateCart(this.value,'{{$key}}');" placeholder="10">
 {{--                                    <input type="text" maxlength="12" min="1" class="input-text number-sidebar input_pop input_pop {{$product->id}}" id="{{$product->id}}" name="Lines" size="4" value="{{$product->qty}}">--}}
                                 </td>
                                 <td>
@@ -68,4 +66,17 @@
 
 
 
+@stop
+@section('script')
+    <script>
+        function updateCart(qty,key) {
+            $.get(
+                '{{route('update.shopping.cart')}}',
+                {qty:qty,key:key},
+                function () {
+                    location.reload();
+                }
+            );
+        }
+    </script>
 @stop
