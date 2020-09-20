@@ -28,10 +28,10 @@ class ArticleController extends FrontendController
             ])->get()->first();
             $articleId = $articleDetail->id;
             if ($articleId > 0){
-                $articleDetailPrevId = $articleId -1;
+                $articleDetailPrevId  = $articleId -1;
                 $articleDetailPNextId = $articleId +1;
-                $articleDetailPrev = Article::where('id',$articleDetailPrevId)->get()->first();
-                $articleDetailPNext = Article::where('id',$articleDetailPNextId)->get()->first();
+                $articleDetailPrev    = Article::where('id',$articleDetailPrevId)->get()->first();
+                $articleDetailPNext   = Article::where('id',$articleDetailPNextId)->get()->first();
             }
             $viewData = [
                 'articleDetail'      => $articleDetail,
