@@ -18,7 +18,7 @@ class CreateArticlesTable extends Migration
             $table->string('a_name')->nullable()->unique();
             $table->string('a_slug')->index();
             $table->string('a_description')->nullable();
-            $table->string('a_content')->nullable();
+            $table->longText('a_content')->nullable();
             $table->string('a_active')->nullable()->default(1);
             $table->string('a_author_id')->nullable()->default(0);
             $table->string('a_description_seo')->nullable();

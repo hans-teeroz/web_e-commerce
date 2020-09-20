@@ -16,6 +16,7 @@ class ContactController extends FrontendController
     public function saveContact(Request $request)
     {
         //cách insert mới
+        //dd($request->all());
         $data =$request->except('_token'); //bỏ _token
         $data['created_at'] = $data['updated_at'] = Carbon::now('Asia/Ho_Chi_Minh');
         Contact::insert($data);

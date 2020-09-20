@@ -19,8 +19,9 @@ class HomeController extends FrontendController
             'pro_active' => Product::STATUS_PUBLIC
         ])->limit(10)->get();
         $articleNews = Article::where([
-            'a_active' => Article::STATUS_PUBLIC
-        ])->orderBy('id', 'DESC')->limit(5)->get();
+            'a_active' => Article::STATUS_PUBLIC,
+            'a_hot'    => Article::STATUS_PUBLIC
+        ])->orderBy('id', 'DESC')->limit(3)->get();
         //$articleNews = $articleNews->orderBy('id', 'DESC')->limit(5)->get();
         $viewData = [
             "productHot" => $productHot,

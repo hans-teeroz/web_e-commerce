@@ -16,7 +16,7 @@ class AdminArticleController extends Controller
 
         $articles = Article::whereRaw(1);
         if($request->a_name) $articles->where('a_name','like','%'.$request->a_name.'%');
-        $articles = $articles->orderByDesc('id')->paginate(10);
+        $articles = $articles->orderByDesc('id')->get();
         $viewData = [
             'articles' => $articles,
 
@@ -102,6 +102,12 @@ class AdminArticleController extends Controller
                 case 'active':
                     //sdd('ok');
                     $article->a_active = $article->a_active ? 0 : 1;
+                    $article->save();
+                    $messages = 'Cập nhật thành công';
+                    break;
+                case 'hot':
+                    //dd('ok');
+                    $article ->a_hot = $article ->a_hot ? 0 : 1;
                     $article->save();
                     $messages = 'Cập nhật thành công';
                     break;

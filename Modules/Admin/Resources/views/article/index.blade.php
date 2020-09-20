@@ -41,6 +41,7 @@
                                 <th>Avatar</th>
                                 <th>Mô tả</th>
                                 <th>Trạng thái</th>
+                                <th>Nổi bật</th>
                                 <th>Ngày tạo / Ngày Update</th>
                                 <th>Thao tác</th>
                             </tr>
@@ -62,6 +63,10 @@
                                                 {{ $article->getStatus($article->a_active) ['name'] }}
                                             </a>
                                         </td>
+                                        <td>
+                                            <a class="label {{ $article->gethot($article->a_hot) ['class'] }}"  href="{{ route('admin.get.action.article',['hot',$article->id])}}">{{ $article->gethot($article->a_hot) ['name'] }}
+                                            </a>
+                                        </td>
                                         <td>{{date_format($article->created_at, 'd/m/yy')}} --- {{date_format($article->updated_at, 'd/m/yy')}}</td>
                                         <td>
                                             <a href="{{route('admin.get.edit.article',$article->id)}}"  ><i class="fa fa-edit"></i></a> &nbsp;
@@ -78,6 +83,7 @@
                                 <th>Avatar</th>
                                 <th>Mô tả</th>
                                 <th>Trạng thái</th>
+                                <th>Nổi bật</th>
                                 <th>Ngày tạo / Ngày Update</th>
                                 <th>Thao tác</th>
                             </tr>

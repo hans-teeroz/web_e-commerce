@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Article extends Model
 {
     protected $table   = 'articles';
-    protected $guarded =  [''];
+    protected $guarded =  ['*'];
     const STATUS_PUBLIC = 1;
     const STATUS_PRIVATE = 0;
     protected $status = [
@@ -20,8 +20,22 @@ class Article extends Model
             'class' => 'label-default'
         ],
     ];
+    protected $hot = [
+        1 => [
+            'name' => 'Nổi bật',
+            'class' => 'label-success'
+        ],
+        0 => [
+            'name' => 'Không',
+            'class' => 'label-default'
+        ],
+    ];
     public function getStatus()
     {
         return array_get($this->status,$this->a_active,'[N\A]');
+    }
+    public function gethot()
+    {
+        return array_get($this->hot,$this->a_hot,'N\A');
     }
 }
