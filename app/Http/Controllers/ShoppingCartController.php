@@ -17,6 +17,8 @@ class ShoppingCartController extends FrontendController
         if ($product->pro_number < 1){
             return redirect()->back()->with('warning','Sản phẩm đã hết hàng');
         }
+
+        //dd(\Cart::content());
         \Cart::add([
             'id' => $id,
             'name' => $product->pro_name,

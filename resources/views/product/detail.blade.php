@@ -88,25 +88,26 @@
                                     <div class="product-desc">
                                         <p>{{$productsDetail->pro_description}}</p>
                                     </div>
-                                    <p class="availability in-stock">Availability: <span>In stock</span></p>
+                                    <p class="availability in-stock">Trình trạng: <span>{{$productsDetail->pro_number < 1 ? 'Tạm hết hàng' : 'Còn hàng'}}</span></p>
                                     <div class="actions-e">
-                                        <div class="action-buttons-single">
-                                            <div class="inputx-content">
-                                                <label for="qty">Quantity:</label>
-                                                <input type="text" name="qty" id="qty" maxlength="12" value="1" title="Qty" class="input-text qty">
-                                            </div>
-                                            <div class="add-to-cart">
-                                                <a href="#">Add to cart</a>
-                                            </div>
-                                            <div class="add-to-links">
-                                                <div class="add-to-wishlist">
-                                                    <a href="#" data-toggle="tooltip" title="" data-original-title="Add to Wishlist"><i class="fa fa-heart"></i></a>
+                                            <div class="action-buttons-single">
+{{--                                                <div class="inputx-content">--}}
+{{--                                                    <label for="qty">Số lượng:</label>--}}
+{{--                                                    <input type="text" name="qty" id="qty" maxlength="12" value="1" title="Qty" class="input-text qty">--}}
+{{--                                                </div>--}}
+                                                <div class="add-to-cart">
+                                                    <a href="{{route('add.shopping.cart',$productsDetail->id)}}">Thêm vào giỏ hàng</a>
                                                 </div>
-                                                <div class="compare-button">
-                                                    <a href="#" data-toggle="tooltip" title="" data-original-title="Compare"><i class="fa fa-refresh"></i></a>
+
+                                                <div class="add-to-links">
+                                                    <div class="add-to-wishlist">
+                                                        <a href="#" data-toggle="tooltip" title="" data-original-title="Add to Wishlist"><i class="fa fa-heart"></i></a>
+                                                    </div>
+                                                    <div class="compare-button">
+                                                        <a href="#" data-toggle="tooltip" title="" data-original-title="Compare"><i class="fa fa-refresh"></i></a>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
                                     </div>
                                     <div class="singl-share">
                                         <a href="#"><img src="{{asset('themes_template/img/single-share.png')}}" alt=""></a>

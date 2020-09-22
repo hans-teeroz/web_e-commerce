@@ -1,16 +1,59 @@
 @extends('admin::layouts.master')
 
 @section('content')
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/data.js"></script>
+    <script src="https://code.highcharts.com/modules/drilldown.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <style>
+        .highcharts-figure, .highcharts-data-table table {
+            min-width: 310px;
+            max-width: 800px;
+            margin: 1em auto;
+        }
+
+        #container {
+            height: 400px;
+        }
+
+        .highcharts-data-table table {
+            font-family: Verdana, sans-serif;
+            border-collapse: collapse;
+            border: 1px solid #EBEBEB;
+            margin: 10px auto;
+            text-align: center;
+            width: 100%;
+            max-width: 500px;
+        }
+        .highcharts-data-table caption {
+            padding: 1em 0;
+            font-size: 1.2em;
+            color: #555;
+        }
+        .highcharts-data-table th {
+            font-weight: 600;
+            padding: 0.5em;
+        }
+        .highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
+            padding: 0.5em;
+        }
+        .highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
+            background: #f8f8f8;
+        }
+        .highcharts-data-table tr:hover {
+            background: #f1f7ff;
+        }
+
+    </style>
+
 
     <section class="content-header">
         <h1>
-            Dashboard
-            <small>Control panel</small>
+            Trang tổng quan
         </h1>
-        <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Dashboard</li>
-        </ol>
+
     </section>
     <section class="content">
         <!-- Small boxes (Stat box) -->
@@ -77,152 +120,69 @@
             <!-- ./col -->
         </div>
         <!-- /.row -->
-{{--        <div class="row">--}}
-{{--            <div class="col-md-12">--}}
-{{--                <div class="box">--}}
-{{--                    <div class="box-header with-border">--}}
-{{--                        <h3 class="box-title">Monthly Recap Report</h3>--}}
+{{--        <ul class="nav nav-pills ranges">--}}
+{{--            <li class="active"><a href="#" data-range='7'>7 Days</a></li>--}}
+{{--            <li><a href="#" data-range='30'>30 Days</a></li>--}}
+{{--            <li><a href="#" data-range='60'>60 Days</a></li>--}}
+{{--            <li><a href="#" data-range='90'>90 Days</a></li>--}}
+{{--        </ul>--}}
+{{--        <div id="stats-container" style="height: 250px;"></div>--}}
 
-{{--                        <div class="box-tools pull-right">--}}
-{{--                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>--}}
-{{--                            </button>--}}
-{{--                            <div class="btn-group">--}}
-{{--                                <button type="button" class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown">--}}
-{{--                                    <i class="fa fa-wrench"></i></button>--}}
-{{--                                <ul class="dropdown-menu" role="menu">--}}
-{{--                                    <li><a href="#">Action</a></li>--}}
-{{--                                    <li><a href="#">Another action</a></li>--}}
-{{--                                    <li><a href="#">Something else here</a></li>--}}
-{{--                                    <li class="divider"></li>--}}
-{{--                                    <li><a href="#">Separated link</a></li>--}}
-{{--                                </ul>--}}
-{{--                            </div>--}}
-{{--                            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                    <!-- /.box-header -->--}}
-{{--                    <div class="box-body">--}}
-{{--                        <div class="row">--}}
-{{--                            <div class="col-md-8">--}}
-{{--                                <p class="text-center">--}}
-{{--                                    <strong>Sales: 1 Jan, 2014 - 30 Jul, 2014</strong>--}}
-{{--                                </p>--}}
-
-{{--                                <div class="chart">--}}
-{{--                                    <!-- Sales Chart Canvas -->--}}
-{{--                                    <canvas id="salesChart" style="height: 180px; width: 816px;" width="1020" height="225"></canvas>--}}
-{{--                                </div>--}}
-{{--                                <!-- /.chart-responsive -->--}}
-{{--                            </div>--}}
-{{--                            <!-- /.col -->--}}
-{{--                            <div class="col-md-4">--}}
-{{--                                <p class="text-center">--}}
-{{--                                    <strong>Goal Completion</strong>--}}
-{{--                                </p>--}}
-
-{{--                                <div class="progress-group">--}}
-{{--                                    <span class="progress-text">Add Products to Cart</span>--}}
-{{--                                    <span class="progress-number"><b>160</b>/200</span>--}}
-
-{{--                                    <div class="progress sm">--}}
-{{--                                        <div class="progress-bar progress-bar-aqua" style="width: 80%"></div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                                <!-- /.progress-group -->--}}
-{{--                                <div class="progress-group">--}}
-{{--                                    <span class="progress-text">Complete Purchase</span>--}}
-{{--                                    <span class="progress-number"><b>310</b>/400</span>--}}
-
-{{--                                    <div class="progress sm">--}}
-{{--                                        <div class="progress-bar progress-bar-red" style="width: 80%"></div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                                <!-- /.progress-group -->--}}
-{{--                                <div class="progress-group">--}}
-{{--                                    <span class="progress-text">Visit Premium Page</span>--}}
-{{--                                    <span class="progress-number"><b>480</b>/800</span>--}}
-
-{{--                                    <div class="progress sm">--}}
-{{--                                        <div class="progress-bar progress-bar-green" style="width: 80%"></div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                                <!-- /.progress-group -->--}}
-{{--                                <div class="progress-group">--}}
-{{--                                    <span class="progress-text">Send Inquiries</span>--}}
-{{--                                    <span class="progress-number"><b>250</b>/500</span>--}}
-
-{{--                                    <div class="progress sm">--}}
-{{--                                        <div class="progress-bar progress-bar-yellow" style="width: 80%"></div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                                <!-- /.progress-group -->--}}
-{{--                            </div>--}}
-{{--                            <!-- /.col -->--}}
-{{--                        </div>--}}
-{{--                        <!-- /.row -->--}}
-{{--                    </div>--}}
-{{--                    <!-- ./box-body -->--}}
-{{--                    <div class="box-footer">--}}
-{{--                        <div class="row">--}}
-{{--                            <div class="col-sm-3 col-xs-6">--}}
-{{--                                <div class="description-block border-right">--}}
-{{--                                    <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> 17%</span>--}}
-{{--                                    <h5 class="description-header">$35,210.43</h5>--}}
-{{--                                    <span class="description-text">TOTAL REVENUE</span>--}}
-{{--                                </div>--}}
-{{--                                <!-- /.description-block -->--}}
-{{--                            </div>--}}
-{{--                            <!-- /.col -->--}}
-{{--                            <div class="col-sm-3 col-xs-6">--}}
-{{--                                <div class="description-block border-right">--}}
-{{--                                    <span class="description-percentage text-yellow"><i class="fa fa-caret-left"></i> 0%</span>--}}
-{{--                                    <h5 class="description-header">$10,390.90</h5>--}}
-{{--                                    <span class="description-text">TOTAL COST</span>--}}
-{{--                                </div>--}}
-{{--                                <!-- /.description-block -->--}}
-{{--                            </div>--}}
-{{--                            <!-- /.col -->--}}
-{{--                            <div class="col-sm-3 col-xs-6">--}}
-{{--                                <div class="description-block border-right">--}}
-{{--                                    <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> 20%</span>--}}
-{{--                                    <h5 class="description-header">$24,813.53</h5>--}}
-{{--                                    <span class="description-text">TOTAL PROFIT</span>--}}
-{{--                                </div>--}}
-{{--                                <!-- /.description-block -->--}}
-{{--                            </div>--}}
-{{--                            <!-- /.col -->--}}
-{{--                            <div class="col-sm-3 col-xs-6">--}}
-{{--                                <div class="description-block">--}}
-{{--                                    <span class="description-percentage text-red"><i class="fa fa-caret-down"></i> 18%</span>--}}
-{{--                                    <h5 class="description-header">1200</h5>--}}
-{{--                                    <span class="description-text">GOAL COMPLETIONS</span>--}}
-{{--                                </div>--}}
-{{--                                <!-- /.description-block -->--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                        <!-- /.row -->--}}
-{{--                    </div>--}}
-{{--                    <!-- /.box-footer -->--}}
-{{--                </div>--}}
-{{--                <!-- /.box -->--}}
-{{--            </div>--}}
-{{--            <!-- /.col -->--}}
-{{--        </div>--}}
-        <!-- Main row -->
-        <ul class="nav nav-pills ranges">
-            <li class="active"><a href="#" data-range='7'>7 Days</a></li>
-            <li><a href="#" data-range='30'>30 Days</a></li>
-            <li><a href="#" data-range='60'>60 Days</a></li>
-            <li><a href="#" data-range='90'>90 Days</a></li>
-        </ul>
-        <div id="stats-container" style="height: 250px;"></div>
-
-        @if(isset($productBuy))
-            <div id="container" data-order="{{ $productBuy }}"></div>
-        @else
-            <div id="container" data-order="{{ $orderYear }}"></div>
-        @endif
-
+{{--        @if(isset($productBuy))--}}
+{{--            <div id="container" data-order="{{ $productBuy }}"></div>--}}
+{{--        @else--}}
+{{--            <div id="container" data-order="{{ $orderYear }}"></div>--}}
+{{--        @endif--}}
+        <div class="row">
+            <div class="col-sm-4">
+                <figure class="highcharts-figure">
+                    <div id="container"></div>
+                </figure>
+            </div>
+            <div class="col-sm-8">
+                <h4>Danh sách đơn hàng mới nhất</h4>
+                <div class="box-body">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Thông tin đơn hàng</th>
+                            <th>Tổng tiền</th>
+                            <th>Thời gian</th>
+                            <th>Thao tác</th>
+                        </tr>
+                        </thead>
+                        <tbody >
+                        @if($transactionNews)
+                            @foreach($transactionNews as $stt => $transaction)
+                                <tr>
+                                    <td>{{ $stt + 1 }}</td>
+                                    <td>
+                                        <ul>
+                                            <li>Họ tên: {{ isset($transaction->getUser->name) ? $transaction->getUser->name : '[N\A]' }}</li>
+                                            <li>Phone: {{ $transaction->getUser->phone }}</li>
+                                            <li>Địa chỉ: {{ $transaction->tr_address}}</li>
+                                            <li>Trạng thái:
+                                                <a style="{{$transaction->tr_status == 1 ? 'pointer-events: none;' : ''}}" class="label {{ $transaction->getStatus($transaction->tr_status) ['class'] }}" href="{{ $transaction->tr_status == 0  ? route('admin.get.action.transaction',['active',$transaction->id]) : route('admin.get.action.transaction',['error',$transaction->id])}}" >
+                                                    {{ $transaction->getStatus($transaction->tr_status) ['name'] }}
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                    <td>{{number_format($transaction->tr_total)}} VNĐ </td>
+                                    <td>{{date_format($transaction->created_at, 'd-m-Y H:i:s')}}</td>
+                                    <td>
+                                        <a class="js_order_item" data-total="{{number_format($transaction->tr_total)}}" data-id="{{$transaction->id}}" href="{{route('admin.get.view.order',$transaction->id)}}"  ><i class="fa fa-eye-slash"></i></a> &nbsp;
+                                        <a href="{{route('admin.get.action.transaction',['delete',$transaction->id])}}"  onclick="return confirm('Are you sure?')"><i class="fa fa-remove"></i></a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @endif
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
         <div class="row">
             <!-- Left col -->
             <section class="col-lg-7 connectedSortable">
@@ -238,121 +198,221 @@
         <!-- /.row (main row) -->
 
     </section>
+    <div class="modal" id="myModalOrder" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Chi tiết đơn hàng số: <b class="transaction_id"></b></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="md_content">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- /.content -->
 @stop
 @section('script')
-    @if(isset($productBuy))
-        <script>
-            $(document).ready(function(){
-                var productBuy = $('#container').data('order');
-                var chartData = [];
-                productBuy.forEach(function(element){
-                    var ele = {name : element.name, y : parseFloat(element.y) };
-                    chartData.push(ele);
-                });
-                console.log(chartData);
-                Highcharts.chart('container', {
-                    chart: {
-                        plotBackgroundColor: null,
-                        plotBorderWidth: null,
-                        plotShadow: false,
-                        type: 'pie'
-                    },
-                    title: {
-                        text: 'Daily order'
-                    },
-                    tooltip: {
-                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-                    },
-                    plotOptions: {
-                        pie: {
-                            allowPointSelect: true,
-                            cursor: 'pointer',
-                            dataLabels: {
-                                enabled: false
-                            },
-                            showInLegend: true
-                        }
-                    },
-                    series: [{
-                        name: 'Brands',
-                        colorByPoint: true,
-                        data: chartData,
-                    }]
-                });
-            });
-        </script>
-    @else
-        <script>
-            $(document).ready(function(){
-                var order = $('#container').data('order');
-                var listOfValue = [];
-                var listOfYear = [];
-                order.forEach(function(element){
-                    listOfYear.push(element.getYear);
-                    listOfValue.push(element.value);
-                });
-                console.log(listOfValue);
-                var chart = Highcharts.chart('container', {
+    <script>
+        let data = "{{$dataMoney}}";
+        var today = new Date();
+        dataChart = JSON.parse(data.replace(/&quot;/g,'"'));
+        //console.log(dataChart);
+        // Create the chart
+        Highcharts.chart('container', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Doanh thu trong ngày '+ today.getDate() +' / tháng '+ today.getMonth() +' / năm ' + today.getFullYear()
+            },
+            // subtitle: {
+            //     text: 'Click the columns to view versions. Source: <a href="http://statcounter.com" target="_blank">statcounter.com</a>'
+            // },
+            accessibility: {
+                announceNewData: {
+                    enabled: true
+                }
+            },
+            xAxis: {
+                type: 'category'
+            },
+            yAxis: {
+                title: {
+                    text: 'Mức doanh thu'
+                }
 
-                    title: {
-                        text: 'Orders by years'
-                    },
+            },
+            legend: {
+                enabled: false
+            },
+            plotOptions: {
+                series: {
+                    borderWidth: 0,
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.y}'+'VNĐ'
+                    }
+                }
+            },
 
-                    subtitle: {
-                        text: 'Plain'
-                    },
+            tooltip: {
+                headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> VNĐ<br/>'
+            },
 
-                    xAxis: {
-                        categories: listOfYear,
-                    },
-
-                    series: [{
-                        type: 'column',
-                        colorByPoint: true,
-                        data: listOfValue,
-                        showInLegend: false
-                    }]
-                });
-
-                $('#plain').click(function () {
-                    chart.update({
-                        chart: {
-                            inverted: false,
-                            polar: false
-                        },
-                        subtitle: {
-                            text: 'Plain'
-                        }
-                    });
-                });
-
-                $('#inverted').click(function () {
-                    chart.update({
-                        chart: {
-                            inverted: true,
-                            polar: false
-                        },
-                        subtitle: {
-                            text: 'Inverted'
-                        }
-                    });
-                });
-
-                $('#polar').click(function () {
-                    chart.update({
-                        chart: {
-                            inverted: false,
-                            polar: true
-                        },
-                        subtitle: {
-                            text: 'Polar'
-                        }
-                    });
+            series: [
+                {
+                    name: "Doanh thu",
+                    colorByPoint: true,
+                    data: dataChart
+                }
+            ],
+        });
+    </script>
+    <script>
+        $(function () {
+            $(".js_order_item").click(function (event) {
+                event.preventDefault();
+                let $this = $(this);
+                let url = $this.attr('href');
+                $("#md_content").html('');
+                $(".transaction_id").text($this.attr('data-id'));
+                //$(".total").text($this.attr('data-total'));
+                $("#myModalOrder").modal('show');
+                //console.log(url);
+                $.ajax({
+                    url: url,
+                }).done(function (result) {
+                    //console.log(result);
+                    if (result)
+                    {
+                        $("#md_content").append(result);
+                    }
                 });
             });
-        </script>
-    @endif
-
+        })
+    </script>
 @stop
+{{--@section('script')--}}
+{{--    @if(isset($productBuy))--}}
+{{--        <script>--}}
+{{--            $(document).ready(function(){--}}
+{{--                var productBuy = $('#container').data('order');--}}
+{{--                var chartData = [];--}}
+{{--                productBuy.forEach(function(element){--}}
+{{--                    var ele = {name : element.name, y : parseFloat(element.y) };--}}
+{{--                    chartData.push(ele);--}}
+{{--                });--}}
+{{--                console.log(chartData);--}}
+{{--                Highcharts.chart('container', {--}}
+{{--                    chart: {--}}
+{{--                        plotBackgroundColor: null,--}}
+{{--                        plotBorderWidth: null,--}}
+{{--                        plotShadow: false,--}}
+{{--                        type: 'pie'--}}
+{{--                    },--}}
+{{--                    title: {--}}
+{{--                        text: 'Daily order'--}}
+{{--                    },--}}
+{{--                    tooltip: {--}}
+{{--                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'--}}
+{{--                    },--}}
+{{--                    plotOptions: {--}}
+{{--                        pie: {--}}
+{{--                            allowPointSelect: true,--}}
+{{--                            cursor: 'pointer',--}}
+{{--                            dataLabels: {--}}
+{{--                                enabled: false--}}
+{{--                            },--}}
+{{--                            showInLegend: true--}}
+{{--                        }--}}
+{{--                    },--}}
+{{--                    series: [{--}}
+{{--                        name: 'Brands',--}}
+{{--                        colorByPoint: true,--}}
+{{--                        data: chartData,--}}
+{{--                    }]--}}
+{{--                });--}}
+{{--            });--}}
+{{--        </script>--}}
+{{--    @else--}}
+{{--        <script>--}}
+{{--            $(document).ready(function(){--}}
+{{--                var order = $('#container').data('order');--}}
+{{--                var listOfValue = [];--}}
+{{--                var listOfYear = [];--}}
+{{--                order.forEach(function(element){--}}
+{{--                    listOfYear.push(element.getYear);--}}
+{{--                    listOfValue.push(element.value);--}}
+{{--                });--}}
+{{--                console.log(listOfValue);--}}
+{{--                var chart = Highcharts.chart('container', {--}}
+
+{{--                    title: {--}}
+{{--                        text: 'Orders by years'--}}
+{{--                    },--}}
+
+{{--                    subtitle: {--}}
+{{--                        text: 'Plain'--}}
+{{--                    },--}}
+
+{{--                    xAxis: {--}}
+{{--                        categories: listOfYear,--}}
+{{--                    },--}}
+
+{{--                    series: [{--}}
+{{--                        type: 'column',--}}
+{{--                        colorByPoint: true,--}}
+{{--                        data: listOfValue,--}}
+{{--                        showInLegend: false--}}
+{{--                    }]--}}
+{{--                });--}}
+
+{{--                $('#plain').click(function () {--}}
+{{--                    chart.update({--}}
+{{--                        chart: {--}}
+{{--                            inverted: false,--}}
+{{--                            polar: false--}}
+{{--                        },--}}
+{{--                        subtitle: {--}}
+{{--                            text: 'Plain'--}}
+{{--                        }--}}
+{{--                    });--}}
+{{--                });--}}
+
+{{--                $('#inverted').click(function () {--}}
+{{--                    chart.update({--}}
+{{--                        chart: {--}}
+{{--                            inverted: true,--}}
+{{--                            polar: false--}}
+{{--                        },--}}
+{{--                        subtitle: {--}}
+{{--                            text: 'Inverted'--}}
+{{--                        }--}}
+{{--                    });--}}
+{{--                });--}}
+
+{{--                $('#polar').click(function () {--}}
+{{--                    chart.update({--}}
+{{--                        chart: {--}}
+{{--                            inverted: false,--}}
+{{--                            polar: true--}}
+{{--                        },--}}
+{{--                        subtitle: {--}}
+{{--                            text: 'Polar'--}}
+{{--                        }--}}
+{{--                    });--}}
+{{--                });--}}
+{{--            });--}}
+{{--        </script>--}}
+{{--    @endif--}}
+
+{{--@stop--}}
 
