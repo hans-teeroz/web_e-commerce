@@ -21,7 +21,7 @@
                     <div class="container-inner">
                         <ul>
                             <li class="home">
-                                <a href="{{route('home')}}">Home</a>
+                                <a href="{{route('home')}}">Trang chủ</a>
                                 <span><i class="fa fa-angle-right"></i></span>
                             </li>
                             <li class="category3"><span>{{ $cateProduct->c_name }}</span></li>

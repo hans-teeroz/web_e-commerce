@@ -23,7 +23,7 @@
     </div>
     <!-- breadcrumbs area end -->
     <!-- product-details Area Start -->
-    <div class="product-details-area">
+    <div class="product-details-area" id="content_product" data-id="{{$productsDetail->id}}">
         <div class="container">
             @if(isset($productsDetail))
                 <div class="row">
@@ -527,4 +527,41 @@
             <!-- our-product area end -->
         </div>
     </div>
+@stop
+@section('script')
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        //Sản phẩm vừa xem
+        $(function () {
+            //lấy gtri trong Storage
+            let products = localStorage.getItem('products');
+            //Lưu id sp in Storage
+            let idProduct = $("#content_product").attr('data-id');
+            //console.log(idProduct);
+            if (products == null)
+            {
+                arrayProduct = new Array();
+                arrayProduct.push(idProduct)
+                localStorage.setItem('products', JSON.stringify(arrayProduct))
+            }
+            else
+            {
+                //lấy gtri id đã save
+                //let products = localStorage.getItem('products');
+                //chuyển về mảng
+                products = $.parseJSON(products)
+                if(products.indexOf(idProduct) == -1) //ktra id đã save r thì ko cần thêm nữa
+                {
+                    products.push(idProduct);
+                    localStorage.setItem('products', JSON.stringify(products))
+
+                }
+                console.log(products);
+            }
+        });
+    </script>
 @stop

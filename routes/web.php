@@ -43,6 +43,10 @@ Route::group(['prefix' => 'gio-hang','middleware' => 'CheckLoginUser'],function 
     Route::get('/thanh-toan','ShoppingCartController@getFromPay')->name('get.form.pay');
     Route::post('/thanh-toan','ShoppingCartController@saveInforShoppingCart');
 });
+Route::group(['prefix' => 'ajax'],function (){
+    Route::post('/view-product','HomeController@viewedProduct')->name('post.product.view');
+
+});
 
 Route::get('lien-he','ContactController@getContact')->name('get.contact');
 Route::post('lien-he','ContactController@saveContact');

@@ -10,6 +10,7 @@ class Article extends Model
     protected $guarded =  ['*'];
     const STATUS_PUBLIC = 1;
     const STATUS_PRIVATE = 0;
+    const HOT = 1;
     protected $status = [
         1 => [
             'name' => 'Public',

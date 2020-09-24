@@ -11,7 +11,15 @@
 |
 */
 
-Route::prefix('admin')->group(function() {
+use App\Http\Middleware\CheckLoginAdmin;
+
+Route::prefix('authenticate')->group(function (){
+    Route::get('/login', 'AdminAuthController@getLogin')->name('admin.login');
+    Route::post('/login', 'AdminAuthController@postLogin');
+    Route::get('/logout', 'AdminAuthController@getLogoutAdmin')->name('admin.logout');
+});
+
+Route::prefix('admin')->middleware('CheckLoginAdmin')->group(function() {
     Route::get('/', 'AdminController@index')->name('admin.home');
 
     Route::group(['prefix' => 'category'], function (){

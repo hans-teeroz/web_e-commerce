@@ -12,8 +12,13 @@ class ArticleController extends FrontendController
         $articles = Article::where([
             'a_active' => Article::STATUS_PUBLIC,
         ])->orderByDesc('id')->get();
+        $articlesHot = Article::where([
+            'a_active' => Article::STATUS_PUBLIC,
+            'a_hot'     => Article::HOT
+        ])->orderByDesc('id')->limit(3)->get();
         $viewData = [
-              'articles' => $articles
+              'articles'     => $articles,
+              'articlesHot'  => $articlesHot
         ];
         return view('article.index',$viewData);
     }
@@ -33,10 +38,15 @@ class ArticleController extends FrontendController
                 $articleDetailPrev    = Article::where('id',$articleDetailPrevId)->get()->first();
                 $articleDetailPNext   = Article::where('id',$articleDetailPNextId)->get()->first();
             }
+            $articlesHot = Article::where([
+                'a_active' => Article::STATUS_PUBLIC,
+                'a_hot'     => Article::HOT
+            ])->orderByDesc('id')->limit(3)->get();
             $viewData = [
                 'articleDetail'      => $articleDetail,
                 'articleDetailPrev'  => $articleDetailPrev,
-                'articleDetailPNext' => $articleDetailPNext
+                'articleDetailPNext' => $articleDetailPNext,
+                'articlesHot'        => $articlesHot
             ];
             return view('article.detail', $viewData);
         }

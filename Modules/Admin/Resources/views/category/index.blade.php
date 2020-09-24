@@ -27,6 +27,7 @@
                                 <th>STT</th>
                                 <th>Tên danh mục</th>
                                 <th>Title Seo</th>
+                                <th>Trạng thái</th>
                                 <th>Nổi bật</th>
                                 <th>Thao tác</th>
                             </tr>
@@ -46,6 +47,10 @@
                                                 </a>
                                             </td>
                                             <td>
+                                                <a class="label {{ $category->gethot($category->c_hot) ['class'] }}"  href="{{ route('admin.get.action.category',['hot',$category->id])}}">{{ $category->gethot($category->c_hot) ['name'] }}
+                                                </a>
+                                            </td>
+                                            <td>
                                                 <a href="{{route('admin.get.edit.category',$category->id)}}"  ><i class="fa fa-edit"></i></a> &nbsp;
                                                 <a href="{{route('admin.get.action.category',['delete',$category->id])}}"  onclick="return confirm('Are you sure?')"><i class="fa fa-remove"></i></a>
                                             </td>
@@ -62,6 +67,7 @@
                                 <th>STT</th>
                                 <th>Tên danh mục</th>
                                 <th>Title Seo</th>
+                                <th>Trạng thái</th>
                                 <th>Nổi bật</th>
                                 <th>Thao tác</th>
                             </tr>

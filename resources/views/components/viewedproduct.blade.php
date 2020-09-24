@@ -1,5 +1,4 @@
-<div class="our-product-area new-product">
-    <div class="container">
+<div class="container">
         <div class="area-title">
             <h2>Sản phẩm vừa xem</h2>
         </div>
@@ -11,7 +10,7 @@
                     @if(isset($productViewed))
                         <!-- single-product start -->
                             @foreach($productViewed as $product)
-                                <div class="col-lg-12 col-md-12">
+                                <div class="col-lg-3 col-md-3">
                                     <div class="single-product first-sale">
                                         <div class="product-img">
                                             @if($product->pro_number <1)
@@ -66,4 +65,4 @@
         </div>
         <!-- our-product area end -->
     </div>
-</div>
+

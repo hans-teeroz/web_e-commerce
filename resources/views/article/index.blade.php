@@ -8,7 +8,8 @@
                     <div class="container-inner">
                         <ul>
                             <li class="home">
-                                <a href="{{route('home')}}">Home </a>
+                                <a href="{{route('home')}}">Trang chủ</a>
+                                <span><i class="fa fa-angle-right"></i></span>
                             </li>
                             <li class="category3"><span>Bài viết</span></li>
                         </ul>
@@ -34,7 +35,7 @@
                                     <div class="blog-box row">
                                         <div class="col-md-4">
                                             <div class="post-media">
-                                                <a href="tech-single.html" title="">
+                                                <a href="{{route('get.detail.article', [$article->a_slug])}}" title="{{$article->a_name}}">
                                                     <img src="{{pare_url_file($article->a_avatar)}}" alt="{{$article->a_avatar}}" class="img-fluid">
                                                     <div class="hovereffect"></div>
                                                 </a>
@@ -45,9 +46,9 @@
                                             <h4><a href="{{route('get.detail.article', [$article->a_slug])}}" title="{{$article->a_name}}">{{$article->a_name}}</a></h4>
                                             <p>{{$article->a_description}}</p>
 {{--                                            <small class="firstsmall"><a class="bg-orange" href="#" title="">{{$cateProduct->c_name}}</a></small>--}}
-                                            <small><a href="tech-single.html" title="">{{\Carbon\Carbon::parse($article->created_at)->diffForHumans()}}</a></small>
-                                            <small><a href="tech-author.html" title="">by Matilda</a></small>
-                                            <small><a href="tech-single.html" title=""><i class="fa fa-eye"></i>{{$article->a_view}}</a></small>
+                                            <small><a href="{{route('get.detail.article', [$article->a_slug])}}" title="{{$article->a_name}}">{{\Carbon\Carbon::parse($article->created_at)->diffForHumans()}}</a></small>
+                                            <small><a href="{{route('get.detail.article', [$article->a_slug])}}" title="{{$article->a_name}}">by Matilda</a></small>
+                                            <small><a href="{{route('get.detail.article', [$article->a_slug])}}" title="{{$article->a_name}}"><i class="fa fa-eye"></i>{{$article->a_view}}</a></small>
                                         </div><!-- end meta -->
                                     </div><!-- end blog-box -->
                                     <hr class="invis">
@@ -82,84 +83,72 @@
 
 
                         <div class="widget">
-                            <h2 class="widget-title">Popular Posts</h2>
+                            <h3 class="widget-title">Bài viết nổi bật</h3>
                             <div class="blog-list-widget">
                                 <div class="list-group">
-                                    <a href="tech-single.html" class="list-group-item list-group-item-action flex-column align-items-start">
-                                        <div class="w-100 justify-content-between">
-                                            <img src="" alt="" class="img-fluid float-left">
-                                            <h5 class="mb-1">5 Beautiful buildings you need..</h5>
-                                            <small>12 Jan, 2016</small>
-                                        </div>
-                                    </a>
-
-                                    <a href="tech-single.html" class="list-group-item list-group-item-action flex-column align-items-start">
-                                        <div class="w-100 justify-content-between">
-                                            <img src="" alt="" class="img-fluid float-left">
-                                            <h5 class="mb-1">Let's make an introduction for..</h5>
-                                            <small>11 Jan, 2016</small>
-                                        </div>
-                                    </a>
-
-                                    <a href="tech-single.html" class="list-group-item list-group-item-action flex-column align-items-start">
-                                        <div class="w-100 last-item justify-content-between">
-                                            <img src="" alt="" class="img-fluid float-left">
-                                            <h5 class="mb-1">Did you see the most beautiful..</h5>
-                                            <small>07 Jan, 2016</small>
-                                        </div>
-                                    </a>
+                                    @if(isset($articlesHot))
+                                        @foreach($articlesHot as $aHot)
+                                            <a href="{{route('get.detail.article', [$aHot->a_slug])}}" class="list-group-item list-group-item-action flex-column align-items-start">
+                                                <div class="w-100 justify-content-between">
+                                                    <img src="{{pare_url_file($aHot->a_avatar)}}" alt="{{$aHot->a_avatar}}" class="img-fluid float-left" style="margin: 0 0 25px;">
+                                                    <h5 class="mb-1" >{{$aHot->a_name}}.</h5>
+                                                    <small>{{\Carbon\Carbon::parse($aHot->created_at)->diffForHumans()}}</small>
+                                                </div>
+                                            </a>
+                                        @endforeach
+                                    @endif
                                 </div>
                             </div><!-- end blog-list -->
                         </div><!-- end widget -->
 
-                        <div class="widget">
-                            <h2 class="widget-title">Recent Reviews</h2>
-                            <div class="blog-list-widget">
-                                <div class="list-group">
-                                    <a href="tech-single.html" class="list-group-item list-group-item-action flex-column align-items-start">
-                                        <div class="w-100 justify-content-between">
-                                            <img src="" alt="" class="img-fluid float-left">
-                                            <h5 class="mb-1">Banana-chip chocolate cake recipe..</h5>
-                                            <span class="rating">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </span>
-                                        </div>
-                                    </a>
+{{--                        <div class="widget">--}}
+{{--                            <h2 class="widget-title">Recent Reviews</h2>--}}
+{{--                            <div class="blog-list-widget">--}}
+{{--                                <div class="list-group">--}}
+{{--                                    <a href="tech-single.html" class="list-group-item list-group-item-action flex-column align-items-start">--}}
+{{--                                        <div class="w-100 justify-content-between">--}}
+{{--                                            <img src="" alt="" class="img-fluid float-left">--}}
+{{--                                            <h5 class="mb-1">Banana-chip chocolate cake recipe..</h5>--}}
+{{--                                            <span class="rating">--}}
+{{--                                                    <i class="fa fa-star"></i>--}}
+{{--                                                    <i class="fa fa-star"></i>--}}
+{{--                                                    <i class="fa fa-star"></i>--}}
+{{--                                                    <i class="fa fa-star"></i>--}}
+{{--                                                    <i class="fa fa-star"></i>--}}
+{{--                                                </span>--}}
+{{--                                        </div>--}}
+{{--                                    </a>--}}
 
-                                    <a href="tech-single.html" class="list-group-item list-group-item-action flex-column align-items-start">
-                                        <div class="w-100 justify-content-between">
-                                            <img src="" alt="" class="img-fluid float-left">
-                                            <h5 class="mb-1">10 practical ways to choose organic..</h5>
-                                            <span class="rating">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </span>
-                                        </div>
-                                    </a>
+{{--                                    <a href="tech-single.html" class="list-group-item list-group-item-action flex-column align-items-start">--}}
+{{--                                        <div class="w-100 justify-content-between">--}}
+{{--                                            <img src="" alt="" class="img-fluid float-left">--}}
+{{--                                            <h5 class="mb-1">10 practical ways to choose organic..</h5>--}}
+{{--                                            <span class="rating">--}}
+{{--                                                    <i class="fa fa-star"></i>--}}
+{{--                                                    <i class="fa fa-star"></i>--}}
+{{--                                                    <i class="fa fa-star"></i>--}}
+{{--                                                    <i class="fa fa-star"></i>--}}
+{{--                                                    <i class="fa fa-star"></i>--}}
+{{--                                                </span>--}}
+{{--                                        </div>--}}
+{{--                                    </a>--}}
 
-                                    <a href="tech-single.html" class="list-group-item list-group-item-action flex-column align-items-start">
-                                        <div class="w-100 last-item justify-content-between">
-                                            <img src="" alt="" class="img-fluid float-left">
-                                            <h5 class="mb-1">We are making homemade ravioli..</h5>
-                                            <span class="rating">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </span>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div><!-- end blog-list -->
-                        </div><!-- end widget -->
+{{--                                    <a href="tech-single.html" class="list-group-item list-group-item-action flex-column align-items-start">--}}
+{{--                                        <div class="w-100 last-item justify-content-between">--}}
+{{--                                            <img src="" alt="" class="img-fluid float-left">--}}
+{{--                                            <h5 class="mb-1">We are making homemade ravioli..</h5>--}}
+{{--                                            <span class="rating">--}}
+{{--                                                    <i class="fa fa-star"></i>--}}
+{{--                                                    <i class="fa fa-star"></i>--}}
+{{--                                                    <i class="fa fa-star"></i>--}}
+{{--                                                    <i class="fa fa-star"></i>--}}
+{{--                                                    <i class="fa fa-star"></i>--}}
+{{--                                                </span>--}}
+{{--                                        </div>--}}
+{{--                                    </a>--}}
+{{--                                </div>--}}
+{{--                            </div><!-- end blog-list -->--}}
+{{--                        </div><!-- end widget -->--}}
 
                         <div class="widget">
                             <h2 class="widget-title">Follow Us</h2>

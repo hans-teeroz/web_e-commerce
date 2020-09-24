@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <div class="slider-area an-1 hm-1">
         <!-- slider -->
         <div class="bend niceties preview-2">
@@ -1307,6 +1308,8 @@
         </div>
     </div>
     <!-- product section end -->
+{{--    sp vừa xem--}}
+    <div class="our-product-area new-product" id="viewed_product"></div>
     <!-- latestpost area start -->
     <div class="latest-post-area">
         <div class="container">
@@ -1353,526 +1356,85 @@
         <div class="container">
             <div class="row">
                 <!-- featured block start -->
-                <div class="col-md-4">
-                    <!-- block title start -->
-                    <div class="block-title">
-                        <h2>Featureds</h2>
-                    </div>
-                    <!-- block title end -->
-                    <!-- block carousel start -->
-                    <div class="block-carousel">
-                        <div class="block-content">
-                            <!-- single block start -->
-                            <div class="single-block">
-                                <div class="block-image pull-left">
-                                    <a href="product-details.html"><img src="{{asset('themes_template/img/block-cat/block-1.jpg')}}" alt="" /></a>
-                                </div>
-                                <div class="category-info">
-                                    <h3><a href="product-details.html">Donec ac tempus</a></h3>
-                                    <p>Nunc facilisis sagittis ullamcorper...</p>
-                                    <div class="cat-price">$235.00 <span class="old-price">$333.00</span></div>
-                                    <div class="cat-rating">
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                    </div>
-                                </div>
+                @if(isset($categoriesHome))
+                    @foreach($categoriesHome as $cateHome)
+                        <div class="col-md-4">
+                            <!-- block title start -->
+                            <div class="block-title">
+                                <h2>{{$cateHome->c_name}}</h2>
                             </div>
-                            <!-- single block end -->
-                            <!-- single block start -->
-                            <div class="single-block">
-                                <div class="block-image pull-left">
-                                    <a href="product-details.html"><img src="{{asset('themes_template/img/block-cat/block-2.jpg')}}" alt="" /></a>
+                            <!-- block title end -->
+                            <!-- block carousel start -->
+                            @if(isset($cateHome->products))
+                                <div class="block-carousel">
+                                    @foreach($cateHome->products as $product)
+                                        <div class="block-content">
+                                                <!-- single block start -->
+                                                <div class="single-block">
+                                                    <div class="block-image pull-left">
+                                                        <a href="{{route('get.detail.product', [$product->pro_slug,$product->id])}}"><img src="{{pare_url_file($product->pro_avatar)}}" width="170px" height="208px" alt="{{$product->pro_name}}" /></a>
+                                                    </div>
+                                                    <div class="category-info">
+                                                        <h3 style=" margin: 0 0 5px"><a  href="{{route('get.detail.product', [$product->pro_slug,$product->id])}}">{{$product->pro_name}}</a></h3>
+                                                        <p style=" margin: 0 0 5px;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;">{{$product->pro_description}}</p>
+                                                        <div style="margin: 0 0 12px;"class="cat-price">{{$product->pro_sale > 0 ? number_format(($product->pro_price-($product->pro_price*$product->pro_sale)/100)).' VNĐ' : number_format($product->pro_price).' VNĐ'}} <span class="old-price" style="color: #e6193c; ">{{$product->pro_sale > 0 ? number_format($product->pro_price) .'VNĐ' : ''}} </span></div>
+
+                                                        <div class="cat-rating">
+                                                            <a href="#"><i class="fa fa-star"></i></a>
+                                                            <a href="#"><i class="fa fa-star"></i></a>
+                                                            <a href="#"><i class="fa fa-star"></i></a>
+                                                            <a href="#"><i class="fa fa-star"></i></a>
+                                                            <a href="#"><i class="fa fa-star"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- single block end -->
+
+                                            </div>
+                                    @endforeach
                                 </div>
-                                <div class="category-info">
-                                    <h3><a href="product-details.html">Primis in faucibus</a></h3>
-                                    <p>Nunc facilisis sagittis ullamcorper...</p>
-                                    <div class="cat-price">$205.00</div>
-                                    <div class="cat-rating">
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- single block end -->
+                            @endif
+                            <!-- block carousel end -->
                         </div>
-                        <div class="block-content">
-                            <!-- single block start -->
-                            <div class="single-block">
-                                <div class="block-image pull-left">
-                                    <a href="product-details.html"><img src="{{asset('themes_template/img/block-cat/block-3.jpg')}}" alt="" /></a>
-                                </div>
-                                <div class="category-info">
-                                    <h3><a href="product-details.html">Voluptas nulla</a></h3>
-                                    <p>Nunc facilisis sagittis ullamcorper...</p>
-                                    <div class="cat-price">$99.00 <span class="old-price">$111.00</span></div>
-                                    <div class="cat-rating">
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- single block end -->
-                            <!-- single block start -->
-                            <div class="single-block">
-                                <div class="block-image pull-left">
-                                    <a href="product-details.html"><img src="{{asset('themes_template/img/block-cat/block-4.jpg')}}" alt="" /></a>
-                                </div>
-                                <div class="category-info">
-                                    <h3><a href="product-details.html">Cras neque metus</a></h3>
-                                    <p>Nunc facilisis sagittis ullamcorper...</p>
-                                    <div class="cat-price">$235.00</div>
-                                    <div class="cat-rating">
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- single block end -->
-                        </div>
-                        <div class="block-content">
-                            <!-- single block start -->
-                            <div class="single-block">
-                                <div class="block-image pull-left">
-                                    <a href="product-details.html"><img src="{{asset('themes_template/img/block-cat/block-5.jpg')}}" alt="" /></a>
-                                </div>
-                                <div class="category-info">
-                                    <h3><a href="product-details.html">Occaecati cupiditate</a></h3>
-                                    <p>Nunc facilisis sagittis ullamcorper...</p>
-                                    <div class="cat-price">$105.00 <span class="old-price">$111.00</span></div>
-                                    <div class="cat-rating">
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- single block end -->
-                            <!-- single block start -->
-                            <div class="single-block">
-                                <div class="block-image pull-left">
-                                    <a href="product-details.html"><img src="{{asset('themes_template/img/block-cat/block-6.jpg')}}" alt="" /></a>
-                                </div>
-                                <div class="category-info">
-                                    <h3><a href="product-details.html">Accumsan elit</a></h3>
-                                    <p>Nunc facilisis sagittis ullamcorper...</p>
-                                    <div class="cat-price">$165.00</div>
-                                    <div class="cat-rating">
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- single block end -->
-                        </div>
-                        <div class="block-content">
-                            <!-- single block start -->
-                            <div class="single-block">
-                                <div class="block-image pull-left">
-                                    <a href="product-details.html"><img src="{{asset('themes_template/img/block-cat/block-3.jpg')}}" alt="" /></a>
-                                </div>
-                                <div class="category-info">
-                                    <h3><a href="product-details.html">Pellentesque habitant</a></h3>
-                                    <p>Nunc facilisis sagittis ullamcorper...</p>
-                                    <div class="cat-price">$80.00 <span class="old-price">$110.00</span></div>
-                                    <div class="cat-rating">
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- single block end -->
-                            <!-- single block start -->
-                            <div class="single-block">
-                                <div class="block-image pull-left">
-                                    <a href="product-details.html"><img src="{{asset('themes_template/img/block-cat/block-9.jpg')}}" alt="" /></a>
-                                </div>
-                                <div class="category-info">
-                                    <h3><a href="product-details.html">Donec non est</a></h3>
-                                    <p>Nunc facilisis sagittis ullamcorper...</p>
-                                    <div class="cat-price">$560.00</div>
-                                    <div class="cat-rating">
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- single block end -->
-                        </div>
-                    </div>
-                    <!-- block carousel end -->
-                </div>
-                <!-- featured block end -->
-                <!-- featured block start -->
-                <div class="col-md-4">
-                    <!-- block title start -->
-                    <div class="block-title">
-                        <h2>On Sales</h2>
-                    </div>
-                    <!-- block title end -->
-                    <!-- block carousel start -->
-                    <div class="block-carousel">
-                        <div class="block-content">
-                            <!-- single block start -->
-                            <div class="single-block">
-                                <div class="block-image pull-left">
-                                    <a href="product-details.html"><img src="{{asset('themes_template/img/block-cat/block-9.jpg')}}" alt="" /></a>
-                                </div>
-                                <div class="category-info">
-                                    <h3><a href="product-details.html">Voluptas nulla</a></h3>
-                                    <p>Nunc facilisis sagittis ullamcorper...</p>
-                                    <div class="cat-price">$99.00 <span class="old-price">$111.00</span></div>
-                                    <div class="cat-rating">
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- single block end -->
-                            <!-- single block start -->
-                            <div class="single-block">
-                                <div class="block-image pull-left">
-                                    <a href="product-details.html"><img src="{{asset('themes_template/img/block-cat/block-10.jpg')}}" alt="" /></a>
-                                </div>
-                                <div class="category-info">
-                                    <h3><a href="product-details.html">Cras neque metus</a></h3>
-                                    <p>Nunc facilisis sagittis ullamcorper...</p>
-                                    <div class="cat-price">$235.00</div>
-                                    <div class="cat-rating">
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- single block end -->
-                        </div>
-                        <div class="block-content">
-                            <!-- single block start -->
-                            <div class="single-block">
-                                <div class="block-image pull-left">
-                                    <a href="product-details.html"><img src="{{asset('themes_template/img/block-cat/block-7.jpg')}}" alt="" /></a>
-                                </div>
-                                <div class="category-info">
-                                    <h3><a href="product-details.html">Donec ac tempus</a></h3>
-                                    <p>Nunc facilisis sagittis ullamcorper...</p>
-                                    <div class="cat-price">$235.00 <span class="old-price">$333.00</span></div>
-                                    <div class="cat-rating">
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- single block end -->
-                            <!-- single block start -->
-                            <div class="single-block">
-                                <div class="block-image pull-left">
-                                    <a href="product-details.html"><img src="{{asset('themes_template/img/block-cat/block-8.jpg')}}" alt="" /></a>
-                                </div>
-                                <div class="category-info">
-                                    <h3><a href="product-details.html">Primis in faucibus</a></h3>
-                                    <p>Nunc facilisis sagittis ullamcorper...</p>
-                                    <div class="cat-price">$205.00</div>
-                                    <div class="cat-rating">
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- single block end -->
-                        </div>
-                        <div class="block-content">
-                            <!-- single block start -->
-                            <div class="single-block">
-                                <div class="block-image pull-left">
-                                    <a href="product-details.html"><img src="{{asset('themes_template/img/block-cat/block-11.jpg')}}" alt="" /></a>
-                                </div>
-                                <div class="category-info">
-                                    <h3><a href="product-details.html">Occaecati cupiditate</a></h3>
-                                    <p>Nunc facilisis sagittis ullamcorper...</p>
-                                    <div class="cat-price">$105.00 <span class="old-price">$111.00</span></div>
-                                    <div class="cat-rating">
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- single block end -->
-                            <!-- single block start -->
-                            <div class="single-block">
-                                <div class="block-image pull-left">
-                                    <a href="product-details.html"><img src="{{asset('themes_template/img/block-cat/block-12.jpg')}}" alt="" /></a>
-                                </div>
-                                <div class="category-info">
-                                    <h3><a href="product-details.html">Accumsan elit</a></h3>
-                                    <p>Nunc facilisis sagittis ullamcorper...</p>
-                                    <div class="cat-price">$165.00</div>
-                                    <div class="cat-rating">
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- single block end -->
-                        </div>
-                        <div class="block-content">
-                            <!-- single block start -->
-                            <div class="single-block">
-                                <div class="block-image pull-left">
-                                    <a href="product-details.html"><img src="{{asset('themes_template/img/block-cat/block-13.jpg')}}" alt="" /></a>
-                                </div>
-                                <div class="category-info">
-                                    <h3><a href="product-details.html">Pellentesque habitant</a></h3>
-                                    <p>Nunc facilisis sagittis ullamcorper...</p>
-                                    <div class="cat-price">$80.00 <span class="old-price">$110.00</span></div>
-                                    <div class="cat-rating">
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- single block end -->
-                            <!-- single block start -->
-                            <div class="single-block">
-                                <div class="block-image pull-left">
-                                    <a href="product-details.html"><img src="{{asset('themes_template/img/block-cat/block-14.jpg')}}" alt="" /></a>
-                                </div>
-                                <div class="category-info">
-                                    <h3><a href="product-details.html">Donec non est</a></h3>
-                                    <p>Nunc facilisis sagittis ullamcorper...</p>
-                                    <div class="cat-price">$560.00</div>
-                                    <div class="cat-rating">
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- single block end -->
-                        </div>
-                    </div>
-                    <!-- block carousel end -->
-                </div>
-                <!-- featured block end -->
-                <!-- featured block start -->
-                <div class="col-md-4">
-                    <!-- block title start -->
-                    <div class="block-title">
-                        <h2>Populers</h2>
-                    </div>
-                    <!-- block title end -->
-                    <!-- block carousel start -->
-                    <div class="block-carousel">
-                        <div class="block-content">
-                            <!-- single block start -->
-                            <div class="single-block">
-                                <div class="block-image pull-left">
-                                    <a href="product-details.html"><img src="{{asset('themes_template/img/block-cat/block-13.jpg')}}" alt="" /></a>
-                                </div>
-                                <div class="category-info">
-                                    <h3><a href="product-details.html">Voluptas nulla</a></h3>
-                                    <p>Nunc facilisis sagittis ullamcorper...</p>
-                                    <div class="cat-price">$99.00 <span class="old-price">$111.00</span></div>
-                                    <div class="cat-rating">
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- single block end -->
-                            <!-- single block start -->
-                            <div class="single-block">
-                                <div class="block-image pull-left">
-                                    <a href="product-details.html"><img src="{{asset('themes_template/img/block-cat/block-14.jpg')}}" alt="" /></a>
-                                </div>
-                                <div class="category-info">
-                                    <h3><a href="product-details.html">Cras neque metus</a></h3>
-                                    <p>Nunc facilisis sagittis ullamcorper...</p>
-                                    <div class="cat-price">$235.00</div>
-                                    <div class="cat-rating">
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- single block end -->
-                        </div>
-                        <div class="block-content">
-                            <!-- single block start -->
-                            <div class="single-block">
-                                <div class="block-image pull-left">
-                                    <a href="product-details.html"><img src="{{asset('themes_template/img/block-cat/block-11.jpg')}}" alt="" /></a>
-                                </div>
-                                <div class="category-info">
-                                    <h3><a href="product-details.html">Donec ac tempus</a></h3>
-                                    <p>Nunc facilisis sagittis ullamcorper...</p>
-                                    <div class="cat-price">$235.00 <span class="old-price">$333.00</span></div>
-                                    <div class="cat-rating">
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- single block end -->
-                            <!-- single block start -->
-                            <div class="single-block">
-                                <div class="block-image pull-left">
-                                    <a href="product-details.html"><img src="{{asset('themes_template/img/block-cat/block-12.jpg')}}" alt="" /></a>
-                                </div>
-                                <div class="category-info">
-                                    <h3><a href="product-details.html">Primis in faucibus</a></h3>
-                                    <p>Nunc facilisis sagittis ullamcorper...</p>
-                                    <div class="cat-price">$205.00</div>
-                                    <div class="cat-rating">
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- single block end -->
-                        </div>
-                        <div class="block-content">
-                            <!-- single block start -->
-                            <div class="single-block">
-                                <div class="block-image pull-left">
-                                    <a href="product-details.html"><img src="{{asset('themes_template/img/block-cat/block-4.jpg')}}" alt="" /></a>
-                                </div>
-                                <div class="category-info">
-                                    <h3><a href="product-details.html">Occaecati cupiditate</a></h3>
-                                    <p>Nunc facilisis sagittis ullamcorper...</p>
-                                    <div class="cat-price">$105.00 <span class="old-price">$111.00</span></div>
-                                    <div class="cat-rating">
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- single block end -->
-                            <!-- single block start -->
-                            <div class="single-block">
-                                <div class="block-image pull-left">
-                                    <a href="product-details.html"><img src="{{asset('themes_template/img/block-cat/block-9.jpg')}}" alt="" /></a>
-                                </div>
-                                <div class="category-info">
-                                    <h3><a href="product-details.html">Accumsan elit</a></h3>
-                                    <p>Nunc facilisis sagittis ullamcorper...</p>
-                                    <div class="cat-price">$165.00</div>
-                                    <div class="cat-rating">
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- single block end -->
-                        </div>
-                        <div class="block-content">
-                            <!-- single block start -->
-                            <div class="single-block">
-                                <div class="block-image pull-left">
-                                    <a href="product-details.html"><img src="{{asset('themes_template/img/block-cat/block-7.jpg')}}" alt="" /></a>
-                                </div>
-                                <div class="category-info">
-                                    <h3><a href="product-details.html">Pellentesque habitant</a></h3>
-                                    <p>Nunc facilisis sagittis ullamcorper...</p>
-                                    <div class="cat-price">$80.00 <span class="old-price">$110.00</span></div>
-                                    <div class="cat-rating">
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- single block end -->
-                            <!-- single block start -->
-                            <div class="single-block">
-                                <div class="block-image pull-left">
-                                    <a href="product-details.html"><img src="{{asset('themes_template/img/block-cat/block-3.jpg')}}" alt="" /></a>
-                                </div>
-                                <div class="category-info">
-                                    <h3><a href="product-details.html">Donec non est</a></h3>
-                                    <p>Nunc facilisis sagittis ullamcorper...</p>
-                                    <div class="cat-price">$560.00</div>
-                                    <div class="cat-rating">
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                        <a href="#"><i class="fa fa-star"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- single block end -->
-                        </div>
-                    </div>
-                    <!-- block carousel end -->
-                </div>
+                    @endforeach
+                @endif
+
                 <!-- featured block end -->
             </div>
         </div>
     </div>
     <!-- block category area end -->
+@stop
+@section('script')
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $(function () {
+           // let urlroute = '{{route('post.product.view')}}';
+            $(document).on('scroll',function () {
+                checkScrool = false;
+                if($(window).scrollTop() > 150 && checkScrool == false){
+                    //console.log('scroll');
+                    checkScrool = true;
+                    let products = localStorage.getItem('products');
+                    products =$.parseJSON(products)
+                    //console.log(products);
+                    if(products.length > 0){
+                        $.ajax({
+                            url : '{{route('post.product.view')}}',
+                            method : "POST",
+                            data : {id : products},
+                            success : function (result) {
+                               // console.log(result)
+                                $('#viewed_product').html('').append(result.data);
+                            }
+                        });
+                    }
+                }
+            })
+        })
+    </script>
 @stop
