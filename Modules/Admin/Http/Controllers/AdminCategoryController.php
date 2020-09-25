@@ -13,7 +13,7 @@ class AdminCategoryController extends Controller
 
     public function index()
     {
-        $categories = Category::select('id','c_name','c_title_seo','c_active','c_hot')->get();
+        $categories = Category::select('id','c_name','c_title_seo','c_active','c_hot')->orderByDesc('id')->get();
         $viewData = [
             'categories' => $categories
         ];

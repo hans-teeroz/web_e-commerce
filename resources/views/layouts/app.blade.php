@@ -7,6 +7,12 @@
 <!--[if (gt IE 9)|!(IE)]><!-->
 <html class="no-js" lang="">
 <head>
+    <style>
+        #scrollUp{
+            bottom: 120px !important;
+            left: 30px !important;
+        }
+    </style>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Lavoro | Home 1</title>
@@ -127,6 +133,7 @@
 <!-- Brand Logo Area End -->
 <!-- FOOTER START -->
 @include('components.footer')
+
 <!-- FOOTER END -->
 
 <!-- JS -->
@@ -146,7 +153,19 @@
             }, 5000);
     });
 </script>
-
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/5f6dc72b4704467e89f23ae8/default';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+    })();
+</script>
+<!--End of Tawk.to Script-->
 <!-- bootstrap js
 ============================================ -->
 <script src="{{asset('themes_template/js/bootstrap.min.js')}}"></script>

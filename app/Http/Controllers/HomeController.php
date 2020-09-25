@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\Order;
 use App\Models\Product;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 
 class HomeController extends FrontendController
@@ -26,10 +28,36 @@ class HomeController extends FrontendController
         //$articleNews = $articleNews->orderBy('id', 'DESC')->limit(5)->get();
         $categoriesHome = Category::with('products')
             ->where('c_hot',1)->limit(3)->get();
+        //kiểm tra user đã login? gợi ý sản phẩm user da mua
+        $listProductssuggest = [];
+        if(get_data_user('web'))
+        {
+            $transactions = Transaction::where([
+                'tr_user_id' => get_data_user('web'),
+                'tr_status'  => Transaction::STATUS_PUBLIC
+            ])->pluck('id');
+            //dump($transactions);
+            if (!empty($transactions))
+            {
+                //distinct() ko lay trung
+                $listIdOrders = Order::whereIn('or_transaction_id',$transactions)->distinct()->pluck('or_product_id');
+                if (!empty($listIdOrders))
+                {
+                    $listIdCateProducts = Product::whereIn('id',$listIdOrders)->distinct()->pluck('pro_category_id');
+                    if ($listIdCateProducts)
+                    {
+                        $listProductssuggest = Product::whereIn('pro_category_id',$listIdCateProducts)->limit(6)->get();
+                        //dd($listProductssuggest);
+                    }
+                }
+
+            }
+        }
         $viewData = [
-            "productHot"   => $productHot,
-            "articleNews"  => $articleNews,
-            "categoriesHome"  => $categoriesHome
+            "productHot"          => $productHot,
+            "articleNews"         => $articleNews,
+            "categoriesHome"      => $categoriesHome,
+            "listProductssuggest" => $listProductssuggest
         ];
         return view('home.index',$viewData);
     }

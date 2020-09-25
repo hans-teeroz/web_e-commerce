@@ -1308,7 +1308,9 @@
         </div>
     </div>
     <!-- product section end -->
-{{--    sp vừa xem--}}
+    {{--gợi ý sản phẩm--}}
+    @include('components.product_suggest')
+    {{--    sp vừa xem--}}
     <div class="our-product-area new-product" id="viewed_product"></div>
     <!-- latestpost area start -->
     <div class="latest-post-area">

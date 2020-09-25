@@ -92,17 +92,18 @@ body {
 }
 #scrollUp {
     background: #9d9d9d none repeat scroll 0 0;
-    bottom: 12px;
+    bottom: 120px;
     color: #fff;
     font-size: 30px;
     height: 40px;
     line-height: 40px;
-    right: 12px;
+    right: 30px;
     text-align: center;
     text-decoration: none;
     transition: all 0.3s ease 0s;
     width: 40px;
     font-weight: bold;
+
 }
 #scrollUp:hover{background: #c2a476; color: #fff;}
 .clear{clear:both}
