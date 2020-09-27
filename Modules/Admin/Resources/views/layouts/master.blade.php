@@ -679,6 +679,7 @@
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
+{{--hiện ảnh--}}
 <script>
     function readUrl(input) {
         if (input.files && input.files[0] ){

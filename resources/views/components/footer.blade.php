@@ -207,9 +207,9 @@
                     <address>Copyright © <a href="http://bootexperts.com/">BootExperts.</a> All Rights Reserved</address>
                 </div>
                 <div class="col-md-6 col-xs-12">
-                    <div class="footer-payment pull-right">
-                        <a href="#"><img src="{{asset('themes_template/payment.png')}}" alt="" /></a>
-                    </div>
+{{--                    <div class="footer-payment pull-right">--}}
+{{--                        <a href="#"><img src="{{asset('themes_template/payment.png')}}" alt="" /></a>--}}
+{{--                    </div>--}}
                 </div>
             </div>
         </div>

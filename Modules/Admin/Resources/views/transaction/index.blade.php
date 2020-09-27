@@ -32,7 +32,7 @@
                         </tr>
                         </thead>
                         <tbody >
-                            @if($transactions)
+                            @if(isset($transactions))
                                 @foreach($transactions as $stt => $transaction)
                                     <tr>
                                         <td>{{ $stt + 1 }}</td>

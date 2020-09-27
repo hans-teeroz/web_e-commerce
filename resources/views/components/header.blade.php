@@ -240,7 +240,7 @@
 {{--                        </div>--}}
                         @if(Auth::check())
                             <div class="expand lang-all disflow">
-                                <a href="#">Hi {{ Auth::user()->name}} !</a>
+                                <a href="{{route('user.dashboard')}}">Hi {{ Auth::user()->name}} !</a>
                             </div>
                         @endif
                     </div>
@@ -311,7 +311,9 @@
                             <a href="#"><i class="fa fa-align-center"></i></a>
                             @if(Auth::check())
                                 <ul class="restrain language" style="text-align: center">
-                                    <li><a href="#">Tài khoản</a></li>
+                                    <li><a href="{{route('user.dashboard')}}">Tài khoản</a></li>
+                                    <li><a href="{{route('user.update.password')}}">Đổi mật khẩu</a></li>
+                                    <li><a href="{{route('user.transaction.dashboard')}}">Đơn hàng của bạn</a></li>
                                     <li><a href="wishlist.html">Danh sách yêu thích</a></li>
                                     <li><a href="cart.html">Giỏ hàng</a></li>
                                     <li><a href="checkout.html">Thanh toán</a></li>

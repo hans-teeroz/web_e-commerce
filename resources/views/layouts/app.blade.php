@@ -166,7 +166,22 @@
     })();
 </script>
 <!--End of Tawk.to Script-->
+<script>
+    function readUrl(input) {
+        if (input.files && input.files[0] ){
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#output_image').attr('src',e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#input_image").change(function () {
+        readUrl(this);
+    });
+</script>
 <!-- bootstrap js
+
 ============================================ -->
 <script src="{{asset('themes_template/js/bootstrap.min.js')}}"></script>
 

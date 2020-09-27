@@ -82,7 +82,7 @@
                             <div class="form-group">
                                 <div class="col-md-12"><strong>Địa chỉ:</strong></div>
                                 <div class="col-md-12">
-                                    <input type="text" name="address" class="form-control" value="" />
+                                    <input type="text" name="address" class="form-control" value="{{get_data_user('web','address')}}" />
                                 </div>
                             </div>
                             <div class="form-group">
@@ -109,7 +109,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-md-12"><strong>Email:</strong></div>
-                                <div class="col-md-12"><input type="text" name="email_address" class="form-control" value="{{get_data_user('web','email')}}" required /></div>
+                                <div class="col-md-12"><input disabled type="email" name="email_address" class="form-control" value="{{get_data_user('web','email')}}" required /></div>
                             </div>
                             <button type="submit" class="btn btn-primary btn-submit-fix">Xác nhận đơn hàng</button>
                         </div>

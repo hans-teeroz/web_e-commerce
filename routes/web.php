@@ -48,5 +48,14 @@ Route::group(['prefix' => 'ajax'],function (){
 
 });
 
+Route::group(['prefix' => 'user','middleware' => 'CheckLoginUser'],function (){
+    Route::get('/','UserController@updateUser')->name('user.dashboard');
+    Route::post('/', 'UserController@saveupdateUser');
+    Route::get('/password','UserController@updatePassword')->name('user.update.password');
+    Route::post('/password','UserController@saveupdatePassword');
+    Route::get('/transaction','UserController@index')->name('user.transaction.dashboard');
+    Route::get('/view/{id}', 'UserController@viewOrders')->name('user.get.view.order');
+});
+
 Route::get('lien-he','ContactController@getContact')->name('get.contact');
 Route::post('lien-he','ContactController@saveContact');
