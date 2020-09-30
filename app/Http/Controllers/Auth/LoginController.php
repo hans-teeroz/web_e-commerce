@@ -22,8 +22,17 @@ class LoginController extends FrontendController
     public function postLogin(Request $request)
     {
         $credentials = $request->only('email','password');
+        $user = User::where([
+            //'active' => 0,
+            'email'  => $request->email
+        ])->select('active')->get()->first();
+        //dd($user->active);
         if(\Auth::attempt($credentials)){
-            return redirect()->route('home')->with('success','Đăng nhập thành công');
+            if ($user->active == 0)
+            {
+                return redirect()->route('home')->with('success','Đăng nhập thành công');
+            }
+            return redirect()->route('home')->with('warning','Vui lòng check mail để hoàn tất thủ tục đăng nhập!');
         }
         return redirect('/dang-nhap')->with('danger','Kiểm tra lại thông tin đăng nhập');
     }

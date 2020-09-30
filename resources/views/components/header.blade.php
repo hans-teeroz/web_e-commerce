@@ -293,12 +293,12 @@
                             <div class="search-icon fa fa-search"></div>
                             <div class="product-search restrain">
                                 <div class="container nopadding-right">
-                                    <form action="index.html" id="searchform" method="get">
+                                    <form action="{{route('get.search.product')}}"  method="get">
                                         <div class="input-group">
-                                            <input type="text" class="form-control" maxlength="128" placeholder="Search product...">
+                                            <input type="text" class="form-control" name="search_product" maxlength="128" placeholder="Search product...">
                                             <span class="input-group-btn">
-														<button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-													</span>
+                                                <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                            </span>
                                         </div>
                                     </form>
                                 </div>

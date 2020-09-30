@@ -20,6 +20,7 @@ Auth::routes();
 Route::group(['namespace' => 'Auth'], function (){
     Route::get('dang-ki', 'RegisterController@getRegister')->name('get.register');
     Route::post('dang-ki', 'RegisterController@postRegister')->name('post.register');
+    Route::get('xac-nhan-tai-khoan', 'RegisterController@verifyAccount')->name('get.verifyaccount.register');
 
     Route::get('dang-nhap', 'LoginController@getLogin')->name('get.login');
     Route::post('dang-nhap', 'LoginController@postLogin')->name('post.login');
@@ -64,3 +65,5 @@ Route::group(['prefix' => 'user','middleware' => 'CheckLoginUser'],function (){
 
 Route::get('lien-he','ContactController@getContact')->name('get.contact');
 Route::post('lien-he','ContactController@saveContact');
+
+Route::get('san-pham', 'CategoryController@getListProduct')->name('get.search.product');

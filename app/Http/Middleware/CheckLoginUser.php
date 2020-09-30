@@ -10,7 +10,11 @@ class CheckLoginUser
     {
         if (!get_data_user('web'))
         {
-            return redirect()->route('get.login');
+            return redirect()->route('get.login')->with('danger','Bạn chưa đăng nhập!');;
+        }
+        if (get_data_user('web') && get_data_user('web','active') == 1)
+        {
+            return redirect()->back()->with('warning','Vui lòng check mail để hoàn tất thủ tục đăng nhập!');
         }
         return $next($request);
     }

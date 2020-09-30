@@ -24,7 +24,9 @@
                                 <a href="{{route('home')}}">Trang chủ</a>
                                 <span><i class="fa fa-angle-right"></i></span>
                             </li>
-                            <li class="category3"><span>{{ $cateProduct->c_name }}</span></li>
+                            @if(isset($cateProduct->c_name))
+                                <li class="category3"><span>{{ $cateProduct->c_name }}</span></li>
+                            @endif
                         </ul>
                     </div>
                 </div>
@@ -206,8 +208,8 @@
                                 <div class="view-mode">
                                     <label>View on</label>
                                     <ul>
-                                        <li class=""><a href="#shop-grid-tab" data-toggle="tab"><i class="fa fa-th"></i></a></li>
-                                        <li class="active"><a href="#shop-list-tab" data-toggle="tab" ><i class="fa fa-th-list"></i></a></li>
+                                        <li class="active"><a href="#shop-grid-tab" data-toggle="tab"><i class="fa fa-th"></i></a></li>
+                                        <li class=""><a href="#shop-list-tab" data-toggle="tab" ><i class="fa fa-th-list"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -216,11 +218,14 @@
                     <!-- shop toolbar end -->
                     <!-- product-row start -->
                     <div class="tab-content">
-                        <div class="tab-pane fade" id="shop-grid-tab">
+                        <div class="tab-pane fade in active" id="shop-grid-tab">
                             <div class="row">
                                 <div class="shop-product-tab first-sale">
-                                    @if($products->total()==0)
-                                        <h3>Không có sản phẩm nào phù hợp với mức giá</h3>
+                                    @if(isset($products))
+{{--                                        {{dd($products->total())}}--}}
+{{--                                        @if($products->total() == 0)--}}
+{{--                                            <h3>Không có sản phẩm nào phù hợp với mức giá</h3>--}}
+{{--                                        @endif--}}
                                     @endif
                                     @if(isset($products))
                                         @foreach($products as $product)
@@ -277,84 +282,89 @@
                                             </div>
                                         @endforeach
                                     @endif
-
                                 </div>
                             </div>
-                            <!-- product-row end -->
 
+                            <!-- product-row end -->
+                            @if(isset($products))
+                                {{$products->appends($query)->links()}}
+                            @endif
                         </div>
                         <!-- list view -->
-                        <div class="tab-pane fade in active" id="shop-list-tab">
-                            <div class="list-view">
-                                <!-- single-product start -->
-                                @if($products->total()==0)
-                                    <h3>Không có sản phẩm nào phù hợp với mức giá</h3>
-                                @endif
-                                @if(isset($products))
-                                    @foreach($products as $product)
-                                        <div class="product-list-wrapper">
-                                            <div class="single-product">
-                                                <div class="col-md-4 col-sm-4 col-xs-12">
-                                                    <div class="product-img">
-                                                        @if($product->pro_number <1)
-                                                            <span style="position: absolute; left: 40px; background: #e6193c; color: white; padding: 2px 6px; border-radius: 5px; font-size: 10px">Tạm hết hàng</span>
-                                                        @endif
-                                                        @if($product->pro_sale > 0)
-                                                            <span style="display: inline-block;position: absolute;right: 40px;font-size: 11px;color: #fff;font-weight: 600;background: #3fb846;border-radius: 2px;padding: 0 5px;height: 18px;">-{{$product->pro_sale}}%</span>
-                                                        @endif
-                                                        <a href="{{route('get.detail.product', [$product->pro_slug,$product->id])}}">
-                                                            <img class="primary-image" src="{{pare_url_file($product->pro_avatar)}}" alt="" />
-                                                            <img class="secondary-image" src="{{pare_url_file($product->pro_avatar)}}" alt="" />
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-8 col-sm-8 col-xs-12">
-                                                    <div class="product-content">
-                                                        <h2 class="product-name"><a href="{{route('get.detail.product', [$product->pro_slug,$product->id])}}">{{$product->pro_name}}</a></h2>
-                                                        <div class="rating-price">
-                                                            <div class="pro-rating">
-                                                                <a href="#"><i class="fa fa-star"></i></a>
-                                                                <a href="#"><i class="fa fa-star"></i></a>
-                                                                <a href="#"><i class="fa fa-star"></i></a>
-                                                                <a href="#"><i class="fa fa-star"></i></a>
-                                                                <a href="#"><i class="fa fa-star"></i></a>
-                                                            </div>
-                                                            <div class="price-boxes">
-                                                                <span class="new-price" style="{{$product->pro_sale > 0 ?  'text-decoration: line-through' : ''}}">{{number_format($product->pro_price)}} VNĐ</span>
-                                                                <br>
-                                                                @if(isset($product->pro_sale) && $product->pro_sale > 0)
-                                                                    <span class="new-price" style="color: red">Sale: {{number_format(($product->pro_price-($product->pro_price*$product->pro_sale)/100))}} VNĐ</span>
-                                                                @endif
-                                                            </div>
-                                                        </div>
-                                                        <div class="product-desc">
-                                                            <p>{{$product->pro_description}}</p>
-                                                        </div>
-                                                        <div class="actions-e">
-                                                            <div class="action-buttons">
-                                                                <div class="add-to-cart">
-                                                                    <a href="{{route('add.shopping.cart',$product->id)}}">Thêm vào giỏ hàng</a>
-                                                                </div>
-                                                                <div class="add-to-links">
-                                                                    <div class="add-to-wishlist">
-                                                                        <a href="{{route('get.detail.product', [$product->pro_slug,$product->id])}}" data-toggle="tooltip" title="" data-original-title="Add to Wishlist"><i class="fa fa-heart"></i></a>
-                                                                    </div>
-                                                                    <div class="compare-button">
-                                                                        <a href="{{route('get.detail.product', [$product->pro_slug,$product->id])}}" data-toggle="tooltip" title="" data-original-title="Compare"><i class="fa fa-refresh"></i></a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                @endif
+{{--                        <div class="tab-pane fade" id="shop-list-tab">--}}
+{{--                            <div class="list-view">--}}
+{{--                                <!-- single-product start -->--}}
+{{--                                @if(isset($products))--}}
 
-                                <!-- single-product end -->
-                            </div>
-                        </div>
+{{--                                    @if($products->total()==0)--}}
+{{--                                        <h3>Không có sản phẩm nào phù hợp với mức giá</h3>--}}
+{{--                                    @endif--}}
+{{--                                @endif--}}
+{{--                                @if(isset($products))--}}
+{{--                                    @foreach($products as $product)--}}
+{{--                                        <div class="product-list-wrapper">--}}
+{{--                                            <div class="single-product">--}}
+{{--                                                <div class="col-md-4 col-sm-4 col-xs-12">--}}
+{{--                                                    <div class="product-img">--}}
+{{--                                                        @if($product->pro_number <1)--}}
+{{--                                                            <span style="position: absolute; left: 40px; background: #e6193c; color: white; padding: 2px 6px; border-radius: 5px; font-size: 10px">Tạm hết hàng</span>--}}
+{{--                                                        @endif--}}
+{{--                                                        @if($product->pro_sale > 0)--}}
+{{--                                                            <span style="display: inline-block;position: absolute;right: 40px;font-size: 11px;color: #fff;font-weight: 600;background: #3fb846;border-radius: 2px;padding: 0 5px;height: 18px;">-{{$product->pro_sale}}%</span>--}}
+{{--                                                        @endif--}}
+{{--                                                        <a href="{{route('get.detail.product', [$product->pro_slug,$product->id])}}">--}}
+{{--                                                            <img class="primary-image" src="{{pare_url_file($product->pro_avatar)}}" alt="" />--}}
+{{--                                                            <img class="secondary-image" src="{{pare_url_file($product->pro_avatar)}}" alt="" />--}}
+{{--                                                        </a>--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="col-md-8 col-sm-8 col-xs-12">--}}
+{{--                                                    <div class="product-content">--}}
+{{--                                                        <h2 class="product-name"><a href="{{route('get.detail.product', [$product->pro_slug,$product->id])}}">{{$product->pro_name}}</a></h2>--}}
+{{--                                                        <div class="rating-price">--}}
+{{--                                                            <div class="pro-rating">--}}
+{{--                                                                <a href="#"><i class="fa fa-star"></i></a>--}}
+{{--                                                                <a href="#"><i class="fa fa-star"></i></a>--}}
+{{--                                                                <a href="#"><i class="fa fa-star"></i></a>--}}
+{{--                                                                <a href="#"><i class="fa fa-star"></i></a>--}}
+{{--                                                                <a href="#"><i class="fa fa-star"></i></a>--}}
+{{--                                                            </div>--}}
+{{--                                                            <div class="price-boxes">--}}
+{{--                                                                <span class="new-price" style="{{$product->pro_sale > 0 ?  'text-decoration: line-through' : ''}}">{{number_format($product->pro_price)}} VNĐ</span>--}}
+{{--                                                                <br>--}}
+{{--                                                                @if(isset($product->pro_sale) && $product->pro_sale > 0)--}}
+{{--                                                                    <span class="new-price" style="color: red">Sale: {{number_format(($product->pro_price-($product->pro_price*$product->pro_sale)/100))}} VNĐ</span>--}}
+{{--                                                                @endif--}}
+{{--                                                            </div>--}}
+{{--                                                        </div>--}}
+{{--                                                        <div class="product-desc">--}}
+{{--                                                            <p>{{$product->pro_description}}</p>--}}
+{{--                                                        </div>--}}
+{{--                                                        <div class="actions-e">--}}
+{{--                                                            <div class="action-buttons">--}}
+{{--                                                                <div class="add-to-cart">--}}
+{{--                                                                    <a href="{{route('add.shopping.cart',$product->id)}}">Thêm vào giỏ hàng</a>--}}
+{{--                                                                </div>--}}
+{{--                                                                <div class="add-to-links">--}}
+{{--                                                                    <div class="add-to-wishlist">--}}
+{{--                                                                        <a href="{{route('get.detail.product', [$product->pro_slug,$product->id])}}" data-toggle="tooltip" title="" data-original-title="Add to Wishlist"><i class="fa fa-heart"></i></a>--}}
+{{--                                                                    </div>--}}
+{{--                                                                    <div class="compare-button">--}}
+{{--                                                                        <a href="{{route('get.detail.product', [$product->pro_slug,$product->id])}}" data-toggle="tooltip" title="" data-original-title="Compare"><i class="fa fa-refresh"></i></a>--}}
+{{--                                                                    </div>--}}
+{{--                                                                </div>--}}
+{{--                                                            </div>--}}
+{{--                                                        </div>--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    @endforeach--}}
+{{--                                @endif--}}
+
+{{--                                <!-- single-product end -->--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
 
                     </div>
                 </div>

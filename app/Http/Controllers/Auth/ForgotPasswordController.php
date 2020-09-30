@@ -39,6 +39,7 @@ class ForgotPasswordController extends Controller
     {
         return view('auth.passwords.email');
     }
+
     public function sendCoderesetPassword(Request $request)
     {
         $email = $request->email;
@@ -63,6 +64,7 @@ class ForgotPasswordController extends Controller
         return redirect()->back()->with('success','Vui lòng check mail của bạn');
 
     }
+
     public function getresetPassword(Request $request)
     {
         $code  = $request->code;
@@ -77,6 +79,7 @@ class ForgotPasswordController extends Controller
         }
         return view('auth.passwords.reset',compact('checkUser'));
     }
+    
     public function resetPassword(RequestResetPassword $requestResetPassword)
     {
        if ($requestResetPassword->password)
