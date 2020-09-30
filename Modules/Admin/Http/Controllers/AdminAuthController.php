@@ -21,7 +21,7 @@ class AdminAuthController extends Controller
     public function postLogin(Request $request)
     {
         $credentials = $request->only('email', 'password');
-        if (Auth::guard('admins')->attempt($credentials)) {
+        if (\Auth::guard('admins')->attempt($credentials)) {
             // Authentication passed...
             return redirect()->route('admin.home')->with('success','Đăng nhập thành công');;
         }

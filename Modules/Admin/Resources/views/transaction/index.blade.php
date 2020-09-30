@@ -39,8 +39,8 @@
                                         <td>
                                             <ul>
                                                 <li>Họ tên: {{ isset($transaction->getUser->name) ? $transaction->getUser->name : '[N\A]' }}</li>
-                                                <li>Phone: {{ $transaction->getUser->phone }}</li>
-                                                <li>Địa chỉ: {{ $transaction->tr_address}}</li>
+                                                <li>Phone: {{ isset($transaction->tr_phone) ? $transaction->tr_phone : $transaction->getUser->phone }}</li>
+                                                <li>Địa chỉ: {{ isset($transaction->tr_address) ? $transaction->tr_address : $transaction->getUser->address}}</li>
                                                 <li>Trạng thái:
                                                     <a style="{{$transaction->tr_status == 1 ? 'pointer-events: none;' : ''}}" class="label {{ $transaction->getStatus($transaction->tr_status) ['class'] }}" href="{{ $transaction->tr_status == 0  ? route('admin.get.action.transaction',['active',$transaction->id]) : route('admin.get.action.transaction',['error',$transaction->id])}}" >
                                                         {{ $transaction->getStatus($transaction->tr_status) ['name'] }}

@@ -269,7 +269,9 @@
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <img src="{{asset('themes_admin/dist/img/user2-160x160.jpg')}}" class="user-image" alt="User Image">
-                            <span class="hidden-xs">Xin chào {{get_data_user('admins','name')}}</span>
+                            @if(!get_data_user('admins','name'))
+                                <span class="hidden-xs">Xin chào {{get_data_user('admins','name')}}</span>
+                            @endif
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
@@ -323,7 +325,9 @@
                     <img src="{{asset('themes_admin/dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
-                    <p>{{get_data_user('admins','name')}}</p>
+                    @if(!get_data_user('admins','name'))
+                        <p>{{get_data_user('admins','name')}}</p>
+                    @endif
                     <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                 </div>
             </div>

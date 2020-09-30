@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Transaction extends Model
 {
     protected $table = 'transactions';
+//    protected $fillable = [
+//        'phone'
+//    ];
     protected $guarded =  ['*'];
 
     const STATUS_PUBLIC = 1;
