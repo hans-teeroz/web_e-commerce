@@ -204,15 +204,15 @@
 {{--                                    per page--}}
 {{--                                </div>--}}
 {{--                            </div>--}}
-                            <div class="col-md-4 col-sm-4 col-xs-12 nopadding-right text-right">
-                                <div class="view-mode">
-                                    <label>View on</label>
-                                    <ul>
-                                        <li class="active"><a href="#shop-grid-tab" data-toggle="tab"><i class="fa fa-th"></i></a></li>
-                                        <li class=""><a href="#shop-list-tab" data-toggle="tab" ><i class="fa fa-th-list"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
+{{--                            <div class="col-md-4 col-sm-4 col-xs-12 nopadding-right text-right">--}}
+{{--                                <div class="view-mode">--}}
+{{--                                    <label>View on</label>--}}
+{{--                                    <ul>--}}
+{{--                                        <li class="active"><a href="#shop-grid-tab" data-toggle="tab"><i class="fa fa-th"></i></a></li>--}}
+{{--                                        <li class=""><a href="#shop-list-tab" data-toggle="tab" ><i class="fa fa-th-list"></i></a></li>--}}
+{{--                                    </ul>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                         </div>
                     </div>
                     <!-- shop toolbar end -->

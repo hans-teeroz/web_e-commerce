@@ -55,7 +55,6 @@ Route::prefix('admin')->middleware('CheckLoginAdmin')->group(function() {
     });
 
     Route::group(['prefix' => 'transaction'], function (){
-
         Route::get('/', 'AdminTransactionController@index')->name('admin.get.list.transaction');
         Route::get('/view/{id}', 'AdminTransactionController@viewOrders')->name('admin.get.view.order');
         Route::get('/{action}/{id}', 'AdminTransactionController@action')->name('admin.get.action.transaction');
@@ -64,15 +63,15 @@ Route::prefix('admin')->middleware('CheckLoginAdmin')->group(function() {
     Route::group(['prefix' => 'user'], function (){
 
         Route::get('/', 'AdminUserController@index')->name('admin.get.list.user');
-
-
     });
 
     Route::group(['prefix' => 'contact'], function (){
 
         Route::get('/', 'AdminContactController@index')->name('admin.get.list.contact');
         Route::get('/{action}/{id}', 'AdminContactController@action')->name('admin.get.action.contact');
-
+    });
+    Route::group(['prefix' => 'warehouse'], function (){
+        Route::get('/', 'AdminWarehouseController@index')->name('admin.get.warehouse');
     });
 });
 

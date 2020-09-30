@@ -74,7 +74,7 @@
                                         <td>
                                             <img src="{{pare_url_file($product->pro_avatar)}}" width="100px" height="100px" alt="">
                                         </td>
-                                        <td>{{number_format($product->pro_price)}} VNĐ - Sale: {{number_format(($product->pro_price-($product->pro_price*$product->pro_sale)/100))}} VNĐ</td>
+                                        <td>{{number_format($product->pro_price)}} VNĐ  {{$product->pro_sale > 0 ? '- Sale: '.number_format(($product->pro_price-($product->pro_price*$product->pro_sale)/100)).' VNĐ' : ''}}</td>
                                         <td>{{$product->pro_description}}</td>
                                         <td>
                                             <a  class="label {{ $product->getStatus($product->pro_active) ['class'] }}" href="{{ route('admin.get.action.product',['active',$product->id])}}">
