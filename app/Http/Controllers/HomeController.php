@@ -28,6 +28,9 @@ class HomeController extends FrontendController
         //$articleNews = $articleNews->orderBy('id', 'DESC')->limit(5)->get();
         $categoriesHome = Category::with('products')
             ->where('c_hot',1)->limit(3)->get();
+        $productSelling = Product::where('pro_active', Product::STATUS_PUBLIC)->orderByDesc('pro_pay')->get();
+        $productRandom = Product::inRandomOrder()->where('pro_active', Product::STATUS_PUBLIC)->limit(50)->get();
+        $productSale = Product::where('pro_active', Product::STATUS_PUBLIC)->where('pro_sale','>',0)->orderByDesc('pro_sale')->limit(50)->get();
         //kiểm tra user đã login? gợi ý sản phẩm user da mua
         $listProductssuggest = [];
         if(get_data_user('web'))
@@ -57,7 +60,10 @@ class HomeController extends FrontendController
             "productHot"          => $productHot,
             "articleNews"         => $articleNews,
             "categoriesHome"      => $categoriesHome,
-            "listProductssuggest" => $listProductssuggest
+            "listProductssuggest" => $listProductssuggest,
+            "productSelling"      => $productSelling,
+            "productRandom"       => $productRandom,
+            "productSale"         => $productSale
         ];
         return view('home.index',$viewData);
     }
