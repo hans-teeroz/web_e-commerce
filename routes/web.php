@@ -10,12 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
-
 Auth::routes();
 Route::group(['namespace' => 'Auth'], function (){
     Route::get('dang-ki', 'RegisterController@getRegister')->name('get.register');
@@ -43,11 +37,15 @@ Route::prefix('shopping')->group(function (){
     Route::get('/delete/{id}','ShoppingCartController@deleteProductItem')->name('delete.shopping.cart');
     Route::get('/update','ShoppingCartController@updateProductItem')->name('update.shopping.cart');
     Route::get('danh-sach','ShoppingCartController@getListShoppingCart')->name('get.list.shopping.cart');
+
+
 });
 
 Route::group(['prefix' => 'gio-hang','middleware' => 'CheckLoginUser'],function (){
     Route::get('/thanh-toan','ShoppingCartController@getFromPay')->name('get.form.pay');
-    Route::post('/thanh-toan','ShoppingCartController@saveInforShoppingCart');
+    Route::post('/thanh-toan','ShoppingCartController@saveInforShoppingCart')->name('post.form.pay');
+    Route::get('thanh-toan-paypal','ShoppingCartController@payPal')->name('get.paypal');
+    Route::get('paypal-callback','ShoppingCartController@payPalSuccess')->name('get.paypal.success');
 });
 Route::group(['prefix' => 'ajax'],function (){
     Route::post('/view-product','HomeController@viewedProduct')->name('post.product.view');

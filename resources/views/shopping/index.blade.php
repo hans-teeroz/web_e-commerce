@@ -13,6 +13,7 @@
                 </tr>
                 </thead>
                 <tbody>
+
                     @if(isset($products))
                         <?php $i =1?>
                         @foreach($products as $key => $product)
@@ -56,9 +57,13 @@
 
                 </tbody>
             </table>
-
-            <h5 class="pull-right">Tổng tiền cần thanh toán: {{ \Cart::subtotal(0,0) }} VNĐ <a href="{{route('get.form.pay')}}" class="btn btn-success">Thanh toán</a></h5>
-
+            @if(\Cart::subtotal(0,0) == 0)
+                <h1>Giỏ hàng của bạn đang trống! Xin mời mua hàng</h1>
+            @endif
+            @if(\Cart::subtotal(0,0) > 0)
+                <h5 class="pull-right">Tổng tiền cần thanh toán: {{ \Cart::subtotal(0,0) }} VNĐ <a href="{{route('get.form.pay')}}" class="btn btn-success">Thanh toán</a></h5>
+                <h5 class="pull-right"><a href="{{route('get.paypal')}}" class="btn btn-danger">Thanh toán PayPal</a></h5>
+            @endif
         </div> <!-- card.// -->
 
     </div>

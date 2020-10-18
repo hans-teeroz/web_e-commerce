@@ -83,7 +83,13 @@
                                 <div class="col-md-12"><strong>Địa chỉ:</strong></div>
                                 <div class="col-md-12">
                                     <input type="text" name="address" class="form-control" value="{{get_data_user('web','address')}}" />
+                                    @if($errors->has('address'))
+                                        <div style="color: red; font-size: small">
+                                            {{$errors->first('address')}}
+                                        </div>
+                                    @endif
                                 </div>
+
                             </div>
                             <div class="form-group">
                                 <div class="col-md-12"><strong>Ghi chú:</strong></div>
@@ -105,11 +111,37 @@
 {{--                            </div>--}}
                             <div class="form-group">
                                 <div class="col-md-12"><strong>Số điện thoại:</strong></div>
-                                <div class="col-md-12"><input type="text" name="phone_number" class="form-control" value="{{get_data_user('web','phone')}}" /></div>
+                                <div class="col-md-12"><input type="text" name="phone_number" class="form-control" value="{{get_data_user('web','phone')}}" />
+                                    @if($errors->has('phone_number'))
+                                        <div style="color: red; font-size: small">
+                                            {{$errors->first('phone_number')}}
+                                        </div>
+                                    @endif
+                                </div>
+
                             </div>
                             <div class="form-group">
                                 <div class="col-md-12"><strong>Email:</strong></div>
                                 <div class="col-md-12"><input disabled type="email" name="email_address" class="form-control" value="{{get_data_user('web','email')}}" required /></div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-12"><strong>Phương thức thanh toán:</strong></div>
+                                <div class="col-md-12">
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" name="payment" value="cod" class="custom-control-input">
+                                        <label class="custom-control-label" for="customRadioInline1">Thanh toán khi nhận hàng</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" name="payment" value="paypal" class="custom-control-input">
+                                        <label class="custom-control-label" for="customRadioInline2">Thanh toán Paypal</label>
+                                    </div>
+                                    @if($errors->has('payment'))
+                                        <div style="color: red; font-size: small">
+                                            {{$errors->first('payment')}}
+                                        </div>
+                                    @endif
+                                </div>
+
                             </div>
                             <button type="submit" class="btn btn-primary btn-submit-fix">Xác nhận đơn hàng</button>
                         </div>

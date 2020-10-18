@@ -46,6 +46,14 @@
                                                         {{ $transaction->getStatus($transaction->tr_status) ['name'] }}
                                                     </a>
                                                 </li>
+                                                <li>Hình thức thanh toán:
+                                                    @if($transaction->tr_payment == 0)
+                                                        <span class="label label-default">COD</span>
+                                                    @endif
+                                                    @if($transaction->tr_payment == 1)
+                                                        <span class="label label-info">PayPal</span>
+                                                    @endif
+                                                </li>
                                             </ul>
                                         </td>
                                         <td>{{number_format($transaction->tr_total)}} VNĐ </td>
