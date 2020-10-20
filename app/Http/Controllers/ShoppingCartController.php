@@ -68,6 +68,7 @@ class ShoppingCartController extends FrontendController
 
     public function saveInforShoppingCart(RequestTransaction $request)
     {
+        //dd($request->all());
         $totalMoney = str_replace(',','', \Cart::subtotal(0,0));
         if ($totalMoney>0)
         {
@@ -103,6 +104,7 @@ class ShoppingCartController extends FrontendController
 
 
         $response = $provider->doExpressCheckoutPayment($data, $token, $PayerID);
+        dd($response);
         $this->saveInfocartWhenOrder($request,$totalMoney,$data['payment']);
 
        // dd($response);

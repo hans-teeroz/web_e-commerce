@@ -43,6 +43,7 @@
                                 </ul>
                             </li>
                             <li class="expand"><a href="{{route('get.list.article')}}">Bài viết</a></li>
+                            <li class="expand"><a href="{{route('get.list.rssfeed')}}">Tin tức</a></li>
                             <li class="expand"><a href="{{route('get.contact')}}">Liên hệ</a></li>
                         </ul>
                     </nav>

@@ -7,6 +7,32 @@ use Illuminate\Http\Request;
 
 class ArticleController extends FrontendController
 {
+    public function getRssFeed()
+    {
+
+        $url_new = "https://vnexpress.net/rss/tin-moi-nhat.rss";
+        $url_hot = "https://vnexpress.net/rss/tin-noi-bat.rss";
+        $url_world = "https://vnexpress.net/rss/the-gioi.rss";
+        $articlesrss = $this->getRss($url_new);
+        $articlesrss_hots = $this->getRss($url_hot);
+        $articlesrss_worlds = $this->getRss($url_world);
+        $viewData = [
+              'articlesrss'        => $articlesrss,
+              'articlesrss_hots'   => $articlesrss_hots,
+              'articlesrss_worlds' => $articlesrss_worlds
+
+        ];
+        return view('rss_feed.index',$viewData);
+    }
+    public function getRss($url)
+    {
+        $feeds = "";
+        if (@simplexml_load_file($url)) {
+            $feeds = simplexml_load_file($url);
+            $articlesrss = $feeds->channel;
+        }
+        return $articlesrss;
+    }
     public function getListArticle()
     {
         $articles = Article::where([

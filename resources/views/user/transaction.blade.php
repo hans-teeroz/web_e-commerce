@@ -97,12 +97,20 @@
                                                                             <td>{{$stt +1}}</td>
                                                                             <td>
                                                                                 <ul>
-                                                                                    <li>Phone: {{ $transaction->tr_phone }}</li>
-                                                                                    <li>Địa chỉ: {{ $transaction->tr_address}}</li>
+                                                                                    <li>Phone: {{ isset($transaction->tr_phone) ? $transaction->tr_phone : $transaction->getUser->phone }}</li>
+                                                                                    <li>Địa chỉ: {{ isset($transaction->tr_address) ? $transaction->tr_address : $transaction->getUser->address}}</li>
                                                                                     <li>Trạng thái:
                                                                                         <p style="{{$transaction->tr_status == 1 ? 'pointer-events: none;' : ''}}" class="label {{ $transaction->getStatus($transaction->tr_status) ['class'] }}">
                                                                                             {{ $transaction->getStatus($transaction->tr_status) ['name'] }}
                                                                                         </p>
+                                                                                    </li>
+                                                                                    <li>Hình thức thanh toán:
+                                                                                        @if($transaction->tr_payment == 0)
+                                                                                            <span class="label label-default">COD</span>
+                                                                                        @endif
+                                                                                        @if($transaction->tr_payment == 1)
+                                                                                            <span class="label label-info">PayPal</span>
+                                                                                        @endif
                                                                                     </li>
                                                                                 </ul>
                                                                             </td>

@@ -134,12 +134,12 @@
 {{--            <div id="container" data-order="{{ $orderYear }}"></div>--}}
 {{--        @endif--}}
         <div class="row">
-            <div class="col-sm-4">
-                <figure class="highcharts-figure">
-                    <div id="container"></div>
+            <div class="col-lg-4" style="margin-top: 36px;">
+                <figure class="highcharts-figure" >
+                    <div id="container" style="height: 412px !important;"></div>
                 </figure>
             </div>
-            <div class="col-sm-8">
+            <div class="col-lg-8">
                 <h4>Danh sách đơn hàng mới nhất</h4>
                 <div class="box-body">
                     <table class="table table-bordered table-striped">
@@ -166,6 +166,14 @@
                                                 <a style="{{$transaction->tr_status == 1 ? 'pointer-events: none;' : ''}}" class="label {{ $transaction->getStatus($transaction->tr_status) ['class'] }}" href="{{ $transaction->tr_status == 0  ? route('admin.get.action.transaction',['active',$transaction->id]) : route('admin.get.action.transaction',['error',$transaction->id])}}" >
                                                     {{ $transaction->getStatus($transaction->tr_status) ['name'] }}
                                                 </a>
+                                            </li>
+                                            <li>Hình thức thanh toán:
+                                                @if($transaction->tr_payment == 0)
+                                                    <span class="label label-default">COD</span>
+                                                @endif
+                                                @if($transaction->tr_payment == 1)
+                                                    <span class="label label-info">PayPal</span>
+                                                @endif
                                             </li>
                                         </ul>
                                     </td>

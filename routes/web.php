@@ -31,6 +31,7 @@ Route::get('danh-muc/{slug}-{id}', 'CategoryController@getListProduct')->name('g
 Route::get('san-pham/{slug}-{id}', 'ProductDetailController@productDetail')->name('get.detail.product');
 Route::get('bai-viet', 'ArticleController@getListArticle')->name('get.list.article');
 Route::get('bai-viet/{slug}', 'ArticleController@articleDetail')->name('get.detail.article');
+Route::get('tin-tuc', 'ArticleController@getRssFeed')->name('get.list.rssfeed');
 
 Route::prefix('shopping')->group(function (){
     Route::get('/add/{id}','ShoppingCartController@addProduct')->name('add.shopping.cart');
