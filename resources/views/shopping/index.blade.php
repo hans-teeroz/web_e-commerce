@@ -62,7 +62,7 @@
             @endif
             @if(\Cart::subtotal(0,0) > 0)
                 <h5 class="pull-right">Tổng tiền cần thanh toán: {{ \Cart::subtotal(0,0) }} VNĐ <a href="{{route('get.form.pay')}}" class="btn btn-success">Thanh toán</a></h5>
-                <h5 class="pull-right"><a href="{{route('get.paypal')}}" class="btn btn-danger">Thanh toán PayPal</a></h5>
+                <h5 class="pull-right"><a href="{{route('get.paypal')}}" target="_blank" class="btn btn-danger">Thanh toán PayPal</a></h5>
             @endif
         </div> <!-- card.// -->
 

@@ -102,7 +102,7 @@
                                     <?php $i =1?>
                                     @if(isset($articlesrss_hots))
                                         @foreach($articlesrss_hots->item as $aHot)
-                                            <a href="{{$aHot->link}}" class="list-group-item list-group-item-action flex-column align-items-start">
+                                            <a href="{{$aHot->link}}" target="_blank" class="list-group-item list-group-item-action flex-column align-items-start">
                                                 <div class="w-100 justify-content-between">
                                                     <img {!! strlen(explode(' ',implode(' ',array_slice(explode('</br>', $aHot->description), 0,1)))[2]) > 20 ? explode(' ',implode(' ',array_slice(explode('</br>', $aHot->description), 0,1)))[2] : 'src="image/no_image.png"' !!} alt="{{$aHot->title}}" class="img-fluid float-left" style="margin: 0 0 25px;">
                                                     <h5 class="mb-1" >{{$aHot->title}}.</h5>
@@ -125,7 +125,7 @@
                                     <?php $i =1?>
                                     @if(isset($articlesrss_worlds))
                                         @foreach($articlesrss_worlds->item as $aHot)
-                                            <a href="{{$aHot->link}}" class="list-group-item list-group-item-action flex-column align-items-start">
+                                            <a href="{{$aHot->link}}" target="_blank" class="list-group-item list-group-item-action flex-column align-items-start">
                                                 <div class="w-100 justify-content-between">
                                                     <img {!! strlen(explode(' ',implode(' ',array_slice(explode('</br>', $aHot->description), 0,1)))[2]) > 20 ? explode(' ',implode(' ',array_slice(explode('</br>', $aHot->description), 0,1)))[2] : 'src="image/no_image.png"' !!} alt="{{$aHot->title}}" class="img-fluid float-left" style="margin: 0 0 25px;">
                                                     <h5 class="mb-1" >{{$aHot->title}}.</h5>

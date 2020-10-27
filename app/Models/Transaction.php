@@ -17,6 +17,7 @@ class Transaction extends Model
     const STATUS_PRIVATE = 0;
     const TR_PAY_COD = 0;
     const TR_PAY_PAYPAL = 1;
+    const TR_PAY_VNPAY = 2;
     protected $status = [
         1 => [
             'name' => 'Đã xử lý',

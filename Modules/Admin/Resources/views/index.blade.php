@@ -174,6 +174,9 @@
                                                 @if($transaction->tr_payment == 1)
                                                     <span class="label label-info">PayPal</span>
                                                 @endif
+                                                @if($transaction->tr_payment == 2)
+                                                    <span class="label label-warning">VNPay</span>
+                                                @endif
                                             </li>
                                         </ul>
                                     </td>

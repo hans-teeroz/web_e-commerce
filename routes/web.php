@@ -47,6 +47,7 @@ Route::group(['prefix' => 'gio-hang','middleware' => 'CheckLoginUser'],function 
     Route::post('/thanh-toan','ShoppingCartController@saveInforShoppingCart')->name('post.form.pay');
     Route::get('thanh-toan-paypal','ShoppingCartController@payPal')->name('get.paypal');
     Route::get('paypal-callback','ShoppingCartController@payPalSuccess')->name('get.paypal.success');
+    Route::get('thanh-toan-vnpay','ShoppingCartController@vnPaySuccess')->name('get.vnpay.success');
 });
 Route::group(['prefix' => 'ajax'],function (){
     Route::post('/view-product','HomeController@viewedProduct')->name('post.product.view');
