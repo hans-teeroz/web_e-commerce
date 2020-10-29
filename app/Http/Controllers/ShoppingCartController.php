@@ -203,8 +203,8 @@ class ShoppingCartController extends FrontendController
                     'tr_user_id' => get_data_user('web'),
                     'tr_total'   => (int)$totalMoney,
                     'tr_note'    => $request->note,
-                    'tr_address' => $request->address,
-                    'tr_phone'   => $request->phone_number,
+                    'tr_address' => isset($request->address ) ? $request->address  :get_data_user('web','address'),
+                    'tr_phone'   => isset($request->phone_number) ? $request->phone_number :get_data_user('web','phone'),
                     'tr_payment' => $tr_payment,
                     'created_at' => Carbon::now('Asia/Ho_Chi_Minh'),
                     'updated_at' => Carbon::now('Asia/Ho_Chi_Minh')
