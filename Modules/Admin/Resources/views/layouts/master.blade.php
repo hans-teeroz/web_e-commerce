@@ -385,6 +385,11 @@
                         <i class="fa fa-dashboard"></i> <span>Liên hệ</span>
                     </a>
                 </li>
+                <li  class="{{ \Request::route()->getName() == 'admin.get.system' ? 'active' : '' }}">
+                    <a href="{{route('admin.get.system')}}">
+                        <i class="fa fa-dashboard"></i> <span>Hệ thống</span>
+                    </a>
+                </li>
 
 
 {{--                <li class="active treeview">--}}

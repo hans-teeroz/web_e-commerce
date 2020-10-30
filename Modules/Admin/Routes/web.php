@@ -73,5 +73,9 @@ Route::prefix('admin')->middleware('CheckLoginAdmin')->group(function() {
     Route::group(['prefix' => 'warehouse'], function (){
         Route::get('/', 'AdminWarehouseController@index')->name('admin.get.warehouse');
     });
+    Route::group(['prefix' => 'system'], function (){
+        Route::get('/', 'SystemAdminControlerController@index')->name('admin.get.system');
+        Route::post('/', 'SystemAdminControlerController@updateSystems');
+    });
 });
 
