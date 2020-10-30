@@ -19,7 +19,7 @@ class SystemAdminControlerController extends Controller
     public function updateSystems(RequestSystem $requestSystem)
     {
         //dd($requestSystem->all());
-        $system = new System();
+        //$system = new System();
         $system = System::find(1);
         $system->sys_name = $requestSystem->sys_name;
         $system->sys_info = $requestSystem->sys_info;
