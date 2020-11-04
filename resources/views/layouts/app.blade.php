@@ -24,7 +24,7 @@
     </script>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="google-site-verification" content="4rhQLZqd4CqOz0xIdv4uiAVR9sl7Ozhhc7FFjnY_GX4" />
+    <meta name="google-site-verification" content="nRP-7xNgZ6fz6m-C4GWpUojdIKTlNgGY2Y4pw4Ewh1E" />
     <title>Lavoro | Home 1</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
