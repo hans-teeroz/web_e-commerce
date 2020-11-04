@@ -1,2 +1,5 @@
-User-agent: *
+User-Agent: *
 Disallow:
+Allow: /
+
+Sitemap: http://gearshopping.herokuapp.com/sitemap.xml
