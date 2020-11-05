@@ -386,7 +386,7 @@
                         <i class="fa fa-dashboard"></i> <span>Liên hệ</span>
                     </a>
                 </li>
-                <li class="treeview {{ \Request::route()->getName() == 'admin.get.list.slide' || 'admin.create.list.slide'  ? 'active' : '' }}">
+                <li class="{{ \Request::route()->getName() == 'admin.get.list.slide' || \Request::route()->getName() == 'admin.create.list.slide' ? 'active' : '' }} treeview">
                     <a href="#">
                         <i class="fa fa-dashboard"></i> <span>Slides</span>
                         <span class="pull-right-container">
