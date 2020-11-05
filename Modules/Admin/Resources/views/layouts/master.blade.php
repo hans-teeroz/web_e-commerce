@@ -32,6 +32,7 @@
     <link rel="stylesheet" href="{{asset('themes_admin/bower_components/bootstrap-daterangepicker/daterangepicker.css')}}">
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="{{asset('themes_admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
+    <link rel="stylesheet" href="{{asset('themes_admin/fileinput.css')}}">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -385,6 +386,18 @@
                         <i class="fa fa-dashboard"></i> <span>Liên hệ</span>
                     </a>
                 </li>
+                <li class="treeview {{ \Request::route()->getName() == 'admin.get.list.slide' || 'admin.create.list.slide'  ? 'active' : '' }}">
+                    <a href="#">
+                        <i class="fa fa-dashboard"></i> <span>Slides</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class="{{ \Request::route()->getName() == 'admin.get.list.slide' ? 'active' : '' }}"><a href="{{route('admin.get.list.slide')}}" ><i class="fa fa-circle-o"></i>Slide ảnh</a></li>
+                        <li class="{{ \Request::route()->getName() == 'admin.create.list.slide' ? 'active' : '' }}"><a href="{{route('admin.create.list.slide')}}"><i class="fa fa-circle-o"></i>Thêm Slide ảnh</a></li>
+                    </ul>
+                </li>
                 <li  class="{{ \Request::route()->getName() == 'admin.get.system' ? 'active' : '' }}">
                     <a href="{{route('admin.get.system')}}">
                         <i class="fa fa-dashboard"></i> <span>Hệ thống</span>
@@ -671,6 +684,10 @@
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('themes_admin/dist/js/demo.js')}}"></script>
 <script src="{{asset('themes_admin/plugins/iCheck/min.js')}}"></script>
+
+<script src="{{asset('themes_admin/fileinput.min.js')}}"></script>
+<script src="{{asset('themes_admin/popper.min.js')}}"></script>
+<script src="{{asset('themes_admin/theme.js')}}"></script>
 <script>
     $(function () {
         $('#example1').DataTable()

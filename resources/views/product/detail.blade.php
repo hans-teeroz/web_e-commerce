@@ -122,7 +122,7 @@
                         <!-- Nav tabs -->
                         <ul class="details-tab">
                             <li class="active"><a href="#home" data-toggle="tab">Description</a></li>
-                            <li class=""><a href="#messages" data-toggle="tab"> Review (1)</a></li>
+                            <li class=""><a href="#messages" data-toggle="tab"> Review (<span class="fb-comments-count" data-href="http://webshopping.com/san-pham/{{$productsDetail->pro_slug.'-'.$productsDetail->id}}"></span>)</a></li>
                         </ul>
                         <!-- Tab panes -->
                         <div class="tab-content">
@@ -132,59 +132,64 @@
                                 </div>
                             </div>
                             <div role="tabpanel" class="tab-pane" id="messages">
-                                <div class="single-post-comments col-md-6 col-md-offset-3">
-                                    <div class="comments-area">
-                                        <h3 class="comment-reply-title">1 REVIEW FOR TURPIS VELIT ALIQUET</h3>
-                                        <div class="comments-list">
-                                            <ul>
-                                                <li>
-                                                    <div class="comments-details">
-                                                        <div class="comments-list-img">
-                                                            <img src="{{asset('themes_template/img/user-1.jpg')}}" alt="">
-                                                        </div>
-                                                        <div class="comments-content-wrap">
-															<span>
-																<b><a href="#">Admin - </a></b>
-																<span class="post-time">October 6, 2014 at 1:38 am</span>
-															</span>
-                                                            <p>Lorem et placerat vestibulum, metus nisi posuere nisl, in accumsan elit odio quis mi.</p>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="comment-respond">
-                                        <h3 class="comment-reply-title">Add a review</h3>
-                                        <span class="email-notes">Your email address will not be published. Required fields are marked *</span>
-                                        <form action="#">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <p>Name *</p>
-                                                    <input type="text">
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <p>Email *</p>
-                                                    <input type="email">
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <p>Your Rating</p>
-                                                    <div class="pro-rating">
-                                                        <a href="#"><i class="fa fa-star"></i></a>
-                                                        <a href="#"><i class="fa fa-star"></i></a>
-                                                        <a href="#"><i class="fa fa-star"></i></a>
-                                                        <a href="#"><i class="fa fa-star-o"></i></a>
-                                                        <a href="#"><i class="fa fa-star-o"></i></a>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12 comment-form-comment">
-                                                    <p>Your Review</p>
-                                                    <textarea id="message" cols="30" rows="10"></textarea>
-                                                    <input type="submit" value="Submit">
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
+                                <div class="">
+                                    <div id="fb-root"></div>
+                                    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v8.0&appId=373939303960427&autoLogAppEvents=1" nonce="IVvASBbL"></script>
+                                    <div class="fb-comments" data-href="http://webshopping.com/san-pham/{{$productsDetail->pro_slug.'-'.$productsDetail->id}}" data-numposts="5" data-width="1140" data-lazy="true" data-include-parent="true"></div>
+{{--                                    <div class="fb-comments" data-href="http://webshopping.com/san-pham/{{$productsDetail->pro_slug.'-'.$productsDetail->id}}" data-include-parent="true" data-width="" data-lazy="true"></div>--}}
+{{--                                    <div class="fb-comment-embed" data-href="http://webshopping.com/san-pham/{{$productsDetail->pro_slug.'-'.$productsDetail->id}}" data-numposts="5" data-width=""></div>--}}
+{{--                                    <div class="comments-area">--}}
+{{--                                        <h3 class="comment-reply-title">1 REVIEW FOR TURPIS VELIT ALIQUET</h3>--}}
+{{--                                        <div class="comments-list">--}}
+{{--                                            <ul>--}}
+{{--                                                <li>--}}
+{{--                                                    <div class="comments-details">--}}
+{{--                                                        <div class="comments-list-img">--}}
+{{--                                                            <img src="{{asset('themes_template/img/user-1.jpg')}}" alt="">--}}
+{{--                                                        </div>--}}
+{{--                                                        <div class="comments-content-wrap">--}}
+{{--															<span>--}}
+{{--																<b><a href="#">Admin - </a></b>--}}
+{{--																<span class="post-time">October 6, 2014 at 1:38 am</span>--}}
+{{--															</span>--}}
+{{--                                                            <p>Lorem et placerat vestibulum, metus nisi posuere nisl, in accumsan elit odio quis mi.</p>--}}
+{{--                                                        </div>--}}
+{{--                                                    </div>--}}
+{{--                                                </li>--}}
+{{--                                            </ul>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="comment-respond">--}}
+{{--                                        <h3 class="comment-reply-title">Add a review</h3>--}}
+{{--                                        <span class="email-notes">Your email address will not be published. Required fields are marked *</span>--}}
+{{--                                        <form action="#">--}}
+{{--                                            <div class="row">--}}
+{{--                                                <div class="col-md-12">--}}
+{{--                                                    <p>Name *</p>--}}
+{{--                                                    <input type="text">--}}
+{{--                                                </div>--}}
+{{--                                                <div class="col-md-12">--}}
+{{--                                                    <p>Email *</p>--}}
+{{--                                                    <input type="email">--}}
+{{--                                                </div>--}}
+{{--                                                <div class="col-md-12">--}}
+{{--                                                    <p>Your Rating</p>--}}
+{{--                                                    <div class="pro-rating">--}}
+{{--                                                        <a href="#"><i class="fa fa-star"></i></a>--}}
+{{--                                                        <a href="#"><i class="fa fa-star"></i></a>--}}
+{{--                                                        <a href="#"><i class="fa fa-star"></i></a>--}}
+{{--                                                        <a href="#"><i class="fa fa-star-o"></i></a>--}}
+{{--                                                        <a href="#"><i class="fa fa-star-o"></i></a>--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="col-md-12 comment-form-comment">--}}
+{{--                                                    <p>Your Review</p>--}}
+{{--                                                    <textarea id="message" cols="30" rows="10"></textarea>--}}
+{{--                                                    <input type="submit" value="Submit">--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </form>--}}
+{{--                                    </div>--}}
                                 </div>
                             </div>
                         </div>

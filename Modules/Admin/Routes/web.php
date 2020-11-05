@@ -77,5 +77,10 @@ Route::prefix('admin')->middleware('CheckLoginAdmin')->group(function() {
         Route::get('/', 'SystemAdminControlerController@index')->name('admin.get.system');
         Route::post('/', 'SystemAdminControlerController@updateSystems');
     });
+    Route::group(['prefix' => 'slides'], function (){
+        Route::get('/', 'SlideAdminController@index')->name('admin.get.list.slide');
+        Route::get('/create', 'SlideAdminController@create')->name('admin.create.list.slide');
+        Route::post('/create', 'SlideAdminController@store')->name('admin.post.list.slide');
+    });
 });
 
