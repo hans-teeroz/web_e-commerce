@@ -4,13 +4,15 @@
     <div class="slider-area an-1 hm-1">
         <!-- slider -->
         <div class="bend niceties preview-2">
-            @if(isset($slides))
+            @if(isset($slides) && empty($slides))
                 <div id="ensign-nivoslider" class="slides">
                     @foreach($slides as $slide)
-                        <img src="{{pare_url_file($slide->sls_avatar,'slides')}}" style="width: 100px !important;" alt="" title="#slider-direction-1"  />
-
+                        <img src="{{pare_url_file($slide->sls_avatar,'slides') == "" ? pare_url_file($slide->sls_avatar,'slides') : asset('themes_template/img/slider/home-1/slider1-1.jpg')}}" style="width: 100px !important;" alt="" title="#slider-direction-1"  />
                     @endforeach
-                        <img src="{{asset('themes_template/img/slider/home-1/slider1-1.jpg')}}" alt="" title="#slider-direction-1"  />
+                </div>
+            @else
+                <div id="ensign-nivoslider" class="slides">
+                    <img src="{{asset('themes_template/img/slider/home-1/slider1-1.jpg')}}" style="width: 100px !important;" alt="" title="#slider-direction-1"  />
                 </div>
             @endif
 {{--            <!-- direction 1 -->--}}
