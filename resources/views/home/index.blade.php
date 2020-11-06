@@ -4,15 +4,15 @@
     <div class="slider-area an-1 hm-1">
         <!-- slider -->
         <div class="bend niceties preview-2">
-            @if(isset($slides) && empty($slides))
+            @if(isset($slides) && count($slides)>0)
                 <div id="ensign-nivoslider" class="slides">
                     @foreach($slides as $slide)
-                        <img src="{{pare_url_file($slide->sls_avatar,'slides') == "" ? pare_url_file($slide->sls_avatar,'slides') : asset('themes_template/img/slider/home-1/slider1-1.jpg')}}" style="width: 100px !important;" alt="" title="#slider-direction-1"  />
+                        <img src="{{pare_url_file($slide->sls_avatar,'slides') != "" ? pare_url_file($slide->sls_avatar,'slides') : asset('themes_template/img/slider/home-1/slider1-1.jpg')}}" alt="" title="#slider-direction-1"  />
                     @endforeach
                 </div>
             @else
                 <div id="ensign-nivoslider" class="slides">
-                    <img src="{{asset('themes_template/img/slider/home-1/slider1-1.jpg')}}" style="width: 100px !important;" alt="" title="#slider-direction-1"  />
+                    <img src="{{asset('themes_template/img/slider/home-1/slider1-1.jpg')}}" alt="" title="#slider-direction-1"  />
                 </div>
             @endif
 {{--            <!-- direction 1 -->--}}
@@ -262,13 +262,13 @@
     </div>
     <!-- product section end -->
     <!-- banner-area start -->
-    <div class="banner-area">
-        <div class="container-fluid">
-            <div class="row">
-                <a href=""><img src="{{asset('themes_template/img/banner/banner-1.jpg')}}" alt="" /></a>
-            </div>
-        </div>
-    </div>
+{{--    <div class="banner-area">--}}
+{{--        <div class="container-fluid">--}}
+{{--            <div class="row">--}}
+{{--                <a href=""><img src="{{asset('themes_template/img/banner/banner-1.jpg')}}" alt="" /></a>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
     <!-- banner-area end -->
     <!-- product section start -->
     <div class="our-product-area new-product">

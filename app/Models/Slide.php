@@ -10,6 +10,8 @@ class Slide extends Model
     protected $guarded =  ['*'];
     const SLS_ACTIVE = 1;
     const SLS_PRIVATE = 0;
+    const SLS_BANNER_ACTIVE = 1;
+    const SLS_BANNER_PRIVATE = 0;
     protected $status = [
         1 => [
             'name' => 'Public',

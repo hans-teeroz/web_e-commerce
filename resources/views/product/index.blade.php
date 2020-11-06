@@ -7,11 +7,11 @@
         }
     </style>
     <!-- category-banner area start -->
-    <div class="category-banner">
-        <div class="cat-heading">
-            <span>Women</span>
-        </div>
-    </div>
+{{--    <div class="category-banner">--}}
+{{--        <div class="cat-heading">--}}
+{{--            <span>Women</span>--}}
+{{--        </div>--}}
+{{--    </div>--}}
     <!-- category-banner area end -->
     <!-- breadcrumbs area start -->
     <div class="breadcrumbs">

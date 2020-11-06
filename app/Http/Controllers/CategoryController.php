@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Slide;
 use Illuminate\Http\Request;
 
 class CategoryController extends FrontendController
 {
     public function getListProduct(Request $request)
     {
+
         $url = $request->segment(2);
         $url = preg_split('/(-)/i',$url);
         $products = Product::where('pro_active', Product::STATUS_PUBLIC);
@@ -75,11 +77,15 @@ class CategoryController extends FrontendController
             }
         }
         $products = $products->paginate(1);
-
+        $slidecate = Slide::where([
+//            'sls_active' => Slide::SLS_ACTIVE,
+            'sls_banner_category' => Slide::SLS_BANNER_ACTIVE
+        ])->orderByDesc('id')->limit(1)->get();
         $viewData = [
             'products'           => $products,
             'cateProduct'       => $cateProduct,
-            'query'             => $request->query()
+            'query'             => $request->query(),
+            'slidecate'         => $slidecate
         ];
         return view('product.index', $viewData);
 
