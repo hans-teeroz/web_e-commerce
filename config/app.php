@@ -162,6 +162,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         //Barryvdh\Debugbar\ServiceProvider::class,
         Srmklive\PayPal\Providers\PayPalServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
 
     ],
 
@@ -214,6 +215,7 @@ return [
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
         'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
         'PayPal' => Srmklive\PayPal\Facades\PayPal::class,
+        'Image' => Intervention\Image\Facades\Image::class,
 
 
     ],

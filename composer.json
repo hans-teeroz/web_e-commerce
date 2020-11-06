@@ -9,6 +9,7 @@
         "csanquer/pdo-service-provider": "~1.1dev",
         "fideloper/proxy": "^4.0",
         "gloudemans/shoppingcart": "^2.6",
+        "intervention/image": "^2.5",
         "laravel/framework": "5.6.*",
         "laravel/tinker": "^1.0",
         "nwidart/laravel-modules": "^7.0",
