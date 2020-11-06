@@ -6,6 +6,7 @@ use App\Models\Article;
 use App\Models\Category;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\Slide;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 
@@ -31,6 +32,9 @@ class HomeController extends FrontendController
         $productSelling = Product::where('pro_active', Product::STATUS_PUBLIC)->orderByDesc('pro_pay')->get();
         $productRandom = Product::inRandomOrder()->where('pro_active', Product::STATUS_PUBLIC)->limit(50)->get();
         $productSale = Product::where('pro_active', Product::STATUS_PUBLIC)->where('pro_sale','>',0)->orderByDesc('pro_sale')->limit(50)->get();
+        $slides = Slide::where([
+            'sls_active' => Slide::SLS_ACTIVE
+        ])->orderByDesc('id')->limit(4)->get();
         //kiểm tra user đã login? gợi ý sản phẩm user da mua
         $listProductssuggest = [];
         if(get_data_user('web'))
@@ -63,7 +67,8 @@ class HomeController extends FrontendController
             "listProductssuggest" => $listProductssuggest,
             "productSelling"      => $productSelling,
             "productRandom"       => $productRandom,
-            "productSale"         => $productSale
+            "productSale"         => $productSale,
+            "slides"              =>$slides
         ];
         return view('home.index',$viewData);
     }

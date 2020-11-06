@@ -1,14 +1,5 @@
 @extends('admin::layouts.master')
 @section('content')
-    <style>
-        .main-section {
-            margin: 0 auto;
-            padding: 20px;
-            margin-top: 100px;
-            background-color: #0b3e6f;
-            box-shadow: 0px 0px 20px #0b3e6f;
-        }
-    </style>
     <section class="content-header">
         <h1>Slide Image</h1>
     </section>
@@ -32,14 +23,25 @@
                                     </div>
                                     <div class="file-thumbnail-footer">
                                         <div class="file-footer-caption" title="honda.jpg">
-                                            <div class="file-caption-info"></div>
-                                            <div class="file-size-info"> <samp>(31.42 KB)</samp></div>
+                                            <div class="file-caption-info">{{$slide->sls_avatar}}</div>
+                                            <div class="file-size-info"> <samp>{{\Carbon\Carbon::parse($slide->created_at)->diffForHumans()}}</samp></div>
+                                        </div>
+                                        <div style="margin-bottom: 5px;">
+                                            <a  class="label {{ $slide->getStatus($slide->sls_active) ['class'] }}" href="{{ route('admin.get.action.slide',['active',$slide->id])}}">
+                                                {{ $slide->getStatus($slide->sls_active) ['name'] }}
+                                            </a>
+                                            <a style="margin: 9px;" class="label {{ $slide->getbanner_home($slide->sls_banner_home) ['class'] }}" href="{{ route('admin.get.action.slide',['banner_home',$slide->id])}}">
+                                                {{ $slide->getbanner_home($slide->sls_banner_home) ['name'] }}
+                                            </a>
+                                            <a class="label {{ $slide->getbanner_cate($slide->sls_banner_category) ['class'] }}" href="{{ route('admin.get.action.slide',['banner_cate',$slide->id])}}">
+                                                {{ $slide->getbanner_cate($slide->sls_banner_category) ['name'] }}
+                                            </a>
                                         </div>
                                         <div class="file-actions">
                                             <div class="file-footer-buttons">
 {{--                                                <a type="button" class="kv-file-upload btn btn-sm btn-kv btn-default btn-outline-secondary" title="Upload file"><i class="glyphicon glyphicon-upload"></i></a>--}}
-                                                <a type="button" class="kv-file-remove btn btn-sm btn-kv btn-default btn-outline-secondary" title="Remove file"><i class="glyphicon glyphicon-trash"></i></a>
-                                                <a type="button" class="kv-file-zoom btn btn-sm btn-kv btn-default btn-outline-secondary" title="View Details"><i class="glyphicon glyphicon-zoom-in"></i></a>
+                                                <a href="{{route('admin.get.action.slide',['delete',$slide->id])}}"  onclick="return confirm('Are you sure?')" type="button" class="kv-file-remove btn btn-sm btn-kv btn-default btn-outline-secondary" title="Remove file"><i class="glyphicon glyphicon-trash"></i></a>
+                                                <a type="button" class="kv-file-zoom btn btn-sm btn-kv btn-default btn-outline-secondary view-image" title="View Details"><i class="glyphicon glyphicon-zoom-in"></i></a href="">
                                             </div>
                                         </div>
                                     </div>
