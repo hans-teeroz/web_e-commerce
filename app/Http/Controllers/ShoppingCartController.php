@@ -55,14 +55,14 @@ class ShoppingCartController extends FrontendController
     public function deleteProductItem($key)
     {
         \Cart::remove($key);
-        return redirect()->back();
+        return redirect()->back()->with('success','Xóa sản phẩm thành công');
     }
 
     public function updateProductItem(Request $request)
     {
         //dd($request->all());
         \Cart::update($request->key, $request->qty );
-        return redirect()->back();
+        return redirect()->back()->with('success','Cập nhật giỏ hàng thành công');
     }
 
     public function getFromPay()
