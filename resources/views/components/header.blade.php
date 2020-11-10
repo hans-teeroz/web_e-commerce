@@ -19,7 +19,7 @@
                                     @if(isset($categories))
                                         @foreach($categories as $category)
                                             <span>
-                                                <a class="mega-menu-title" href="{{route('get.list.product', [$category->c_slug,$category->id])}}"> {{$category->c_name}} </a>
+                                                <a class="mega-menu-title" href="{{route('get.list.product', [$category->c_slug])}}"> {{$category->c_name}} </a>
 {{--                                                <a href="shop-grid.html">Coctail</a>--}}
 {{--                                                <a href="shop-grid.html">Day</a>--}}
 {{--                                                <a href="shop-grid.html">Evening </a>--}}

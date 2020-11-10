@@ -108,37 +108,43 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-3 col-sm-4">
-                    <div class="info-fcontainer">
-                        <div class="infof-icon">
-                            <i class="fa fa-map-marker"></i>
+                    <a target="_blank" href="http://maps.google.com/maps?q={{str_replace(' ', '+', isset($system->sys_address) ? $system->sys_address : "")}}">
+                        <div class="info-fcontainer">
+                            <div class="infof-icon">
+                                <i class="fa fa-map-marker"></i>
+                            </div>
+                            <div class="infof-content">
+                                <h3>Địa chỉ</h3>
+                                <p>{{isset($system->sys_address) ? $system->sys_address : ""}}</p>
+                            </div>
                         </div>
-                        <div class="infof-content">
-                            <h3>Địa chỉ</h3>
-                            <p>{{isset($system->sys_address) ? $system->sys_address : ""}}</p>
-                        </div>
-                    </div>
+                    </a>
                 </div>
                 <div class="col-md-3 col-sm-4">
-                    <div class="info-fcontainer">
-                        <div class="infof-icon">
-                            <i class="fa fa-phone"></i>
+                    <a target="_blank" href="tel:{{isset($system->sys_phone) ? $system->sys_phone : ""}}">
+                        <div class="info-fcontainer">
+                            <div class="infof-icon">
+                                <i class="fa fa-phone"></i>
+                            </div>
+                            <div class="infof-content">
+                                <h3>SĐT hỗ trợ</h3>
+                                <p>{{isset($system->sys_phone) ? $system->sys_phone : ""}}</p>
+                            </div>
                         </div>
-                        <div class="infof-content">
-                            <h3>SĐT hỗ trợ</h3>
-                            <p>{{isset($system->sys_phone) ? $system->sys_phone : ""}}</p>
-                        </div>
-                    </div>
+                    </a>
                 </div>
                 <div class="col-md-3 col-sm-4">
-                    <div class="info-fcontainer">
-                        <div class="infof-icon">
-                            <i class="fa fa-envelope"></i>
+                    <a target="_blank" href="mailto:{{isset($system->sys_email) ? $system->sys_email : ""}}">
+                        <div class="info-fcontainer">
+                            <div class="infof-icon">
+                                <i class="fa fa-envelope"></i>
+                            </div>
+                            <div class="infof-content">
+                                <h3>Email hỗ trợ</h3>
+                                <p>{{isset($system->sys_email) ? $system->sys_email : ""}}</p>
+                            </div>
                         </div>
-                        <div class="infof-content">
-                            <h3>Email hỗ trợ</h3>
-                            <p>{{isset($system->sys_email) ? $system->sys_email : ""}}</p>
-                        </div>
-                    </div>
+                    </a>
                 </div>
                 <div class="col-md-3 hidden-sm">
                     <div class="info-fcontainer">

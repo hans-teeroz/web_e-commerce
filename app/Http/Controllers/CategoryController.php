@@ -11,17 +11,24 @@ class CategoryController extends FrontendController
 {
     public function getListProduct(Request $request)
     {
-
         $url = $request->segment(2);
-        $url = preg_split('/(-)/i',$url);
+        //$url = preg_split('/(-)/i',$url);
+        $slug = Category::where('c_slug',$url)->select('id')->pluck('id');
         $products = Product::where('pro_active', Product::STATUS_PUBLIC);
         $cateProduct = [];
-        if($id = array_pop($url))
+        if ($slug)
         {
-            $cateProduct = Category::find($id);
-            $products = $products->where('pro_category_id',$id);
-
+            $cateProduct = Category::find($slug[0]);
+            $products = $products->where('pro_category_id',$slug[0]);
+            //dd($cateProduct);
         }
+//        if($id = array_pop($url))
+//        {
+//            $cateProduct = Category::find($id);
+//            $products = $products->where('pro_category_id',$id);
+//            dd($products);
+//
+//        }
         if ($request->search_product)
         {
             $products = $products->where('pro_name','like','%'.$request->search_product.'%');

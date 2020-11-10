@@ -27,8 +27,8 @@ Route::group(['namespace' => 'Auth'], function (){
 });
 
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('danh-muc/{slug}-{id}', 'CategoryController@getListProduct')->name('get.list.product');
-Route::get('san-pham/{slug}-{id}', 'ProductDetailController@productDetail')->name('get.detail.product');
+Route::get('danh-muc/{slug}', 'CategoryController@getListProduct')->name('get.list.product');
+Route::get('san-pham/{slug}', 'ProductDetailController@productDetail')->name('get.detail.product');
 Route::get('bai-viet', 'ArticleController@getListArticle')->name('get.list.article');
 Route::get('bai-viet/{slug}', 'ArticleController@articleDetail')->name('get.detail.article');
 Route::get('tin-tuc', 'ArticleController@getRssFeed')->name('get.list.rssfeed');

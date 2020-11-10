@@ -81,7 +81,7 @@
                                                                         @if($product->pro_sale > 0)
                                                                             <span style="display: inline-block;position: absolute;right: 40px;font-size: 11px;color: #fff;font-weight: 600;background: #3fb846;border-radius: 2px;padding: 0 5px;height: 18px;">-{{$product->pro_sale}}%</span>
                                                                         @endif
-                                                                        <a href="{{route('get.detail.product', [$product->pro_slug,$product->id])}}">
+                                                                        <a href="{{route('get.detail.product', [$product->pro_slug])}}">
                                                                             <img class="primary-image" src="{{pare_url_file($product->pro_avatar)}}" alt="" />
                                                                             <img class="secondary-image" src="{{pare_url_file($product->pro_avatar)}}" alt="" />
                                                                         </a>
@@ -94,14 +94,14 @@
                                                                             <div class="action-buttons">
                                                                                 <div class="add-to-links">
                                                                                     <div class="add-to-wishlist">
-                                                                                        <a href="{{route('get.detail.product', [$product->pro_slug,$product->id])}}" title="Add to Wishlist"><i class="fa fa-heart"></i></a>
+                                                                                        <a href="{{route('get.detail.product', [$product->pro_slug])}}" title="Add to Wishlist"><i class="fa fa-heart"></i></a>
                                                                                     </div>
                                                                                     <div class="compare-button">
                                                                                         <a href="{{route('add.shopping.cart',$product->id)}}" title="Thêm vào giỏ hàng"><i class="icon-bag"></i></a>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="quickviewbtn">
-                                                                                    <a href="{{route('get.detail.product', [$product->pro_slug,$product->id])}}" title="Add to Compare"><i class="fa fa-retweet"></i></a>
+                                                                                    <a href="{{route('get.detail.product', [$product->pro_slug])}}" title="Add to Compare"><i class="fa fa-retweet"></i></a>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -114,7 +114,7 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="product-content">
-                                                                        <h2 class="product-name"><a href="{{route('get.detail.product', [$product->pro_slug,$product->id])}}">{{$product->pro_name}}</a></h2>
+                                                                        <h2 class="product-name"><a href="{{route('get.detail.product', [$product->pro_slug])}}">{{$product->pro_name}}</a></h2>
                                                                         <p>{{$product->pro_description}}</p>
                                                                     </div>
                                                                 </div>
@@ -144,7 +144,7 @@
                                                                     @if($product->pro_sale > 0)
                                                                         <span style="display: inline-block;position: absolute;right: 40px;font-size: 11px;color: #fff;font-weight: 600;background: #3fb846;border-radius: 2px;padding: 0 5px;height: 18px;">-{{$product->pro_sale}}%</span>
                                                                     @endif
-                                                                    <a href="{{route('get.detail.product', [$product->pro_slug,$product->id])}}">
+                                                                    <a href="{{route('get.detail.product', [$product->pro_slug])}}">
                                                                         <img class="primary-image" src="{{pare_url_file($product->pro_avatar)}}" alt="" />
                                                                         <img class="secondary-image" src="{{pare_url_file($product->pro_avatar)}}" alt="" />
                                                                     </a>
@@ -157,14 +157,14 @@
                                                                         <div class="action-buttons">
                                                                             <div class="add-to-links">
                                                                                 <div class="add-to-wishlist">
-                                                                                    <a href="{{route('get.detail.product', [$product->pro_slug,$product->id])}}" title="Add to Wishlist"><i class="fa fa-heart"></i></a>
+                                                                                    <a href="{{route('get.detail.product', [$product->pro_slug])}}" title="Add to Wishlist"><i class="fa fa-heart"></i></a>
                                                                                 </div>
                                                                                 <div class="compare-button">
                                                                                     <a href="{{route('add.shopping.cart',$product->id)}}" title="Thêm vào giỏ hàng"><i class="icon-bag"></i></a>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="quickviewbtn">
-                                                                                <a href="{{route('get.detail.product', [$product->pro_slug,$product->id])}}" title="Add to Compare"><i class="fa fa-retweet"></i></a>
+                                                                                <a href="{{route('get.detail.product', [$product->pro_slug])}}" title="Add to Compare"><i class="fa fa-retweet"></i></a>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -177,7 +177,7 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="product-content">
-                                                                    <h2 class="product-name"><a href="{{route('get.detail.product', [$product->pro_slug,$product->id])}}">{{$product->pro_name}}</a></h2>
+                                                                    <h2 class="product-name"><a href="{{route('get.detail.product', [$product->pro_slug])}}">{{$product->pro_name}}</a></h2>
                                                                     <p>{{$product->pro_description}}</p>
                                                                 </div>
                                                             </div>
@@ -207,7 +207,7 @@
                                                                     @if($product->pro_sale > 0)
                                                                         <span style="display: inline-block;position: absolute;right: 40px;font-size: 11px;color: #fff;font-weight: 600;background: #3fb846;border-radius: 2px;padding: 0 5px;height: 18px;">-{{$product->pro_sale}}%</span>
                                                                     @endif
-                                                                    <a href="{{route('get.detail.product', [$product->pro_slug,$product->id])}}">
+                                                                    <a href="{{route('get.detail.product', [$product->pro_slug])}}">
                                                                         <img class="primary-image" src="{{pare_url_file($product->pro_avatar)}}" alt="" />
                                                                         <img class="secondary-image" src="{{pare_url_file($product->pro_avatar)}}" alt="" />
                                                                     </a>
@@ -220,14 +220,14 @@
                                                                         <div class="action-buttons">
                                                                             <div class="add-to-links">
                                                                                 <div class="add-to-wishlist">
-                                                                                    <a href="{{route('get.detail.product', [$product->pro_slug,$product->id])}}" title="Add to Wishlist"><i class="fa fa-heart"></i></a>
+                                                                                    <a href="{{route('get.detail.product', [$product->pro_slug])}}" title="Add to Wishlist"><i class="fa fa-heart"></i></a>
                                                                                 </div>
                                                                                 <div class="compare-button">
                                                                                     <a href="{{route('add.shopping.cart',$product->id)}}" title="Thêm vào giỏ hàng"><i class="icon-bag"></i></a>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="quickviewbtn">
-                                                                                <a href="{{route('get.detail.product', [$product->pro_slug,$product->id])}}" title="Add to Compare"><i class="fa fa-retweet"></i></a>
+                                                                                <a href="{{route('get.detail.product', [$product->pro_slug])}}" title="Add to Compare"><i class="fa fa-retweet"></i></a>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -240,7 +240,7 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="product-content">
-                                                                    <h2 class="product-name"><a href="{{route('get.detail.product', [$product->pro_slug,$product->id])}}">{{$product->pro_name}}</a></h2>
+                                                                    <h2 class="product-name"><a href="{{route('get.detail.product', [$product->pro_slug])}}">{{$product->pro_name}}</a></h2>
                                                                     <p>{{$product->pro_description}}</p>
                                                                 </div>
                                                             </div>
@@ -293,7 +293,7 @@
                                                     @if($hot->pro_sale > 0)
                                                         <span style="display: inline-block;position: absolute;right: 40px;font-size: 11px;color: #fff;font-weight: 600;background: #3fb846;border-radius: 2px;padding: 0 5px;height: 18px;">-{{$hot->pro_sale}}%</span>
                                                     @endif
-                                                    <a href="{{route('get.detail.product', [$hot->pro_slug,$hot->id])}}">
+                                                    <a href="{{route('get.detail.product', [$hot->pro_slug])}}">
                                                         <img class="primary-image" src="{{pare_url_file($hot->pro_avatar)}}" width="540px" height="600px"  alt="" />
                                                         <img class="secondary-image" src="{{pare_url_file($hot->pro_avatar)}}" width="540px" height="600px" alt="" />
                                                     </a>
@@ -325,7 +325,7 @@
 {{--                                                    </div>--}}
                                                 </div>
                                                 <div class="product-content">
-                                                    <h2 class="product-name"><a href="{{route('get.detail.product', [$hot->pro_slug,$hot->id])}}">{{$hot->pro_name}}</a></h2>
+                                                    <h2 class="product-name"><a href="{{route('get.detail.product', [$hot->pro_slug])}}">{{$hot->pro_name}}</a></h2>
                                                     <p>{{$hot->pro_description}}</p>
                                                 </div>
                                             </div>
@@ -407,10 +407,10 @@
                                                 <!-- single block start -->
                                                 <div class="single-block">
                                                     <div class="block-image pull-left">
-                                                        <a href="{{route('get.detail.product', [$product->pro_slug,$product->id])}}"><img src="{{pare_url_file($product->pro_avatar)}}" width="170px" height="208px" alt="{{$product->pro_name}}" /></a>
+                                                        <a href="{{route('get.detail.product', [$product->pro_slug])}}"><img src="{{pare_url_file($product->pro_avatar)}}" width="170px" height="208px" alt="{{$product->pro_name}}" /></a>
                                                     </div>
                                                     <div class="category-info">
-                                                        <h3 style=" margin: 0 0 5px"><a  href="{{route('get.detail.product', [$product->pro_slug,$product->id])}}">{{$product->pro_name}}</a></h3>
+                                                        <h3 style=" margin: 0 0 5px"><a  href="{{route('get.detail.product', [$product->pro_slug])}}">{{$product->pro_name}}</a></h3>
                                                         <p style=" margin: 0 0 5px;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;">{{$product->pro_description}}</p>
                                                         <div style="margin: 0 0 12px;"class="cat-price">{{$product->pro_sale > 0 ? number_format(($product->pro_price-($product->pro_price*$product->pro_sale)/100)).' VNĐ' : number_format($product->pro_price).' VNĐ'}} <span class="old-price" style="color: #e6193c; ">{{$product->pro_sale > 0 ? number_format($product->pro_price) .'VNĐ' : ''}} </span></div>
 
