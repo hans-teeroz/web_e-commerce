@@ -60,9 +60,18 @@ class ShoppingCartController extends FrontendController
 
     public function updateProductItem(Request $request)
     {
-        //dd($request->all());
+        $id = $request->id;
+        $product = Product::find($id);
+        if (!$product) return response('Lỗi! Không tồn tại sản phẩm');
+        $price = number_format($request->qty * ($product->pro_price-($product->pro_price*$product->pro_sale)/100));
+        if ($product->pro_number < $request->qty)
+        {
+            $price = number_format($product->pro_number * ($product->pro_price-($product->pro_price*$product->pro_sale)/100));
+            return response()->json(['price' => $price,'msg'=>'Lỗi! Không đủ số lượng sản phẩm']);
+        }
         \Cart::update($request->key, $request->qty );
-        return redirect()->back()->with('success','Cập nhật giỏ hàng thành công');
+        return response()->json(['data' =>\Cart::subtotal(0,0), 'id'=>$id,'price' => $price,'msg'=>'Cập nhật giỏ hàng thành công!']);
+        //return redirect()->back()->with('success','Cập nhật giỏ hàng thành công');
     }
 
     public function getFromPay()
