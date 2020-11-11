@@ -45,7 +45,7 @@ return [
             'port' => env('DB_PORT', '3306'),
             'database' => env('DB_DATABASE', 'laravelgearshop'),
             'username' => env('DB_USERNAME', 'robinpmt'),
-            'password' => env('DB_PASSWORD', '28121999Aa'),
+            'password' => env('DB_PASSWORD', '62b7ea23'),
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
