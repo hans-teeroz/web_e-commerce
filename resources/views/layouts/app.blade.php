@@ -9,6 +9,9 @@
 <head>
 
     <meta charset="utf-8">
+    <meta name="robots" content="noindex" />
+    <meta name="googlebot" content="noindex">
+    <meta name="googlebot-news" content="nosnippet">
     <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
     <meta name="google-site-verification" content="nRP-7xNgZ6fz6m-C4GWpUojdIKTlNgGY2Y4pw4Ewh1E" />
     <meta content="INDEX,FOLLOW" name="robots" />
