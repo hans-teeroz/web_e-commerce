@@ -10,7 +10,11 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+use Spatie\Sitemap\SitemapGenerator;
+
 Auth::routes();
+
 Route::group(['namespace' => 'Auth'], function (){
     Route::get('dang-ki', 'RegisterController@getRegister')->name('get.register');
     Route::post('dang-ki', 'RegisterController@postRegister')->name('post.register');
@@ -27,6 +31,7 @@ Route::group(['namespace' => 'Auth'], function (){
 });
 
 Route::get('/', 'HomeController@index')->name('home');
+
 Route::get('danh-muc/{slug}', 'CategoryController@getListProduct')->name('get.list.product');
 Route::get('san-pham/{slug}', 'ProductDetailController@productDetail')->name('get.detail.product');
 Route::get('bai-viet', 'ArticleController@getListArticle')->name('get.list.article');
@@ -67,3 +72,7 @@ Route::get('lien-he','ContactController@getContact')->name('get.contact');
 Route::post('lien-he','ContactController@saveContact');
 
 Route::get('san-pham', 'CategoryController@getListProduct')->name('get.search.product');
+Route::get('sitemap', function (){
+    SitemapGenerator::create('http://gearshopping.herokuapp.com')->writeToFile('sitemap_com1.xml');
+    return 'Created sitemap!!';
+});

@@ -15,6 +15,7 @@
         "laravelium/sitemap": "2.8.*",
         "nwidart/laravel-modules": "^7.0",
         "paypal/rest-api-sdk-php": "*",
+        "spatie/laravel-sitemap": "5.2.3",
         "srmklive/paypal": "~1.0"
     },
     "require-dev": {
