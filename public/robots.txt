@@ -1,6 +1,5 @@
 User-Agent: *
 Disallow: /admin
 Allow: /
-Allow: /sitemap.htm
-Sitemap: http://gearshopping.herokuapp.com/sitemap.xml
+Sitemap: http://gearshopping.herokuapp.com/sitemap_index.xml
 
