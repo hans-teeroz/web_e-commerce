@@ -1,20 +1,14 @@
 <!DOCTYPE html>
-<!--[if IE]><![endif]-->
-<!--[if lt IE 7 ]> <html lang="en" class="ie6">    <![endif]-->
-<!--[if IE 7 ]>    <html lang="en" class="ie7">    <![endif]-->
-<!--[if IE 8 ]>    <html lang="en" class="ie8">    <![endif]-->
-<!--[if IE 9 ]>    <html lang="en" class="ie9">    <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!-->
 <html class="no-js" lang="">
 <head>
 
     <meta charset="utf-8">
-    <meta name="robots" content="noindex" />
-    <meta name="googlebot" content="noindex">
-    <meta name="googlebot-news" content="nosnippet">
+    <meta content="INDEX,FOLLOW" name="robots" />
+    <meta name="robots" content="index" />
+    <meta name="googlebot" content="index">
+    <meta name="googlebot-news" content="snippet">
     <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
     <meta name="google-site-verification" content="nRP-7xNgZ6fz6m-C4GWpUojdIKTlNgGY2Y4pw4Ewh1E" />
-    <meta content="INDEX,FOLLOW" name="robots" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
 {{--    {!! SEOMeta::generate() !!}--}}
 {{--    {!! dd(OpenGraph::generate()) !!}--}}
