@@ -73,6 +73,6 @@ Route::post('lien-he','ContactController@saveContact');
 
 Route::get('san-pham', 'CategoryController@getListProduct')->name('get.search.product');
 Route::get('sitemap', function (){
-    SitemapGenerator::create('http://webshopping.com')->writeToFile('sitemap_com1.xml');
+    SitemapGenerator::create('http://gearshopping.herokuapp.com')->writeToFile('sitemap_com1.xml');
     return 'Created sitemap!!';
 });
