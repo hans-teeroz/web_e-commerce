@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Slide;
+use Artesaos\SEOTools\Facades\SEOMeta;
+use Artesaos\SEOTools\Facades\SEOTools;
 use Illuminate\Http\Request;
 
 class CategoryController extends FrontendController
@@ -19,6 +21,11 @@ class CategoryController extends FrontendController
         if ($slug)
         {
             $cateProduct = Category::find($slug[0]);
+            SEOTools::setTitle('Sản phẩm');
+            SEOTools::setDescription($cateProduct->c_description_seo);
+            SEOTools::opengraph()->setUrl($request->url());
+            SEOTools::setCanonical($request->url());
+            SEOMeta::addKeyword([$cateProduct->c_name]);
             $products = $products->where('pro_category_id',$slug[0]);
             //dd($cateProduct);
         }
@@ -94,6 +101,7 @@ class CategoryController extends FrontendController
             'query'             => $request->query(),
             'slidecate'         => $slidecate
         ];
+
         return view('product.index', $viewData);
 
     }

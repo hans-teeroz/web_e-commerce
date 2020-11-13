@@ -4,7 +4,7 @@
             <!-- logo start -->
             <div class="col-md-3 col-sm-12 text-center nopadding-right">
                 <div class="top-logo">
-                    <a href="index.html"><img src="{{asset('themes_template/img/logo.gif')}}" alt="" /></a>
+                    <a href=""><img src="{{isset($system->sys_avatar) ? pare_url_file($system->sys_avatar): asset('themes_template/img/logo.gif')}}" alt="" /></a>
                 </div>
             </div>
             <!-- logo end -->
@@ -38,7 +38,7 @@
                                 <ul class="restrain sub-menu">
                                     <li><a href="#">Về chúng tôi</a></li>
                                     <li><a href="{{route('get.contact')}}">Liên hệ</a></li>
-                                    <li><a href="#">Checkout</a></li>
+                                    <li><a href="{{route('get.form.pay')}}">Checkout</a></li>
                                     <li><a href="#">Wishlist</a></li>
                                 </ul>
                             </li>

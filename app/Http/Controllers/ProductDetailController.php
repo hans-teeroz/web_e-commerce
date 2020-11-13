@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
+use Artesaos\SEOTools\Facades\OpenGraph;
+use Artesaos\SEOTools\Facades\SEOTools;
 use Illuminate\Http\Request;
 
 class ProductDetailController extends FrontendController
@@ -18,6 +20,11 @@ class ProductDetailController extends FrontendController
                 'pro_active' => Product::STATUS_PUBLIC,
                 'pro_slug' => $url
             ])->first();
+            SEOTools::setTitle($productsDetail->pro_title_seo);
+            SEOTools::setDescription($productsDetail->pro_description_seo);
+            SEOTools::opengraph()->setUrl($request->url());
+            SEOTools::setCanonical($request->url());
+            OpenGraph::addImage(explode('/san-pham/',$request->url(),2)[0].pare_url_file($productsDetail->pro_avatar), ['height' => 300, 'width' => 300]);
             //dd($productsDetail);
             $productNew = Product::where('pro_active', Product::STATUS_PUBLIC)->orderByDesc('id')->limit(50)->get();
             $viewData = [

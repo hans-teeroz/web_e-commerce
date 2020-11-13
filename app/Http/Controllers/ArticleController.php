@@ -3,13 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use Artesaos\SEOTools\Facades\SEOTools;
 use Illuminate\Http\Request;
 
 class ArticleController extends FrontendController
 {
-    public function getRssFeed()
+    public function getRssFeed(Request $request)
     {
-
+        SEOTools::setTitle('Tin tức');
+        SEOTools::setDescription('Tin mới nhất được cập nhật liên tục từ nguồn VnExpress');
+        SEOTools::opengraph()->setUrl($request->url());
+        SEOTools::setCanonical($request->url());
         $url_new = "https://vnexpress.net/rss/tin-moi-nhat.rss";
         $url_hot = "https://vnexpress.net/rss/tin-noi-bat.rss";
         $url_world = "https://vnexpress.net/rss/the-gioi.rss";
@@ -33,8 +37,12 @@ class ArticleController extends FrontendController
         }
         return $articlesrss;
     }
-    public function getListArticle()
+    public function getListArticle(Request $request)
     {
+        SEOTools::setTitle('Bài viết');
+        SEOTools::setDescription('Tin mới nhất từ công nghệ, cập nhật liên tục');
+        SEOTools::opengraph()->setUrl($request->url());
+        SEOTools::setCanonical($request->url());
         $articles = Article::where([
             'a_active' => Article::STATUS_PUBLIC,
         ])->orderByDesc('id')->get();
@@ -53,6 +61,7 @@ class ArticleController extends FrontendController
         $url = $request->segment(2);
         if ($url)
         {
+
             $articleDetail = Article::where([
                'a_slug' => $url,
                'a_active' => Article::STATUS_PUBLIC,
@@ -74,6 +83,10 @@ class ArticleController extends FrontendController
                 'articleDetailPNext' => $articleDetailPNext,
                 'articlesHot'        => $articlesHot
             ];
+            SEOTools::setTitle($articleDetail->a_title_seo);
+            SEOTools::setDescription($articleDetail->a_description_seo);
+            SEOTools::opengraph()->setUrl($request->url());
+            SEOTools::setCanonical($request->url());
             return view('article.detail', $viewData);
         }
         return redirect('/');

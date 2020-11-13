@@ -8,7 +8,10 @@ use App\Models\Order;
 use App\Models\Product;
 use App\Models\Slide;
 use App\Models\Transaction;
+use Artesaos\SEOTools\Facades\OpenGraph;
+use Artesaos\SEOTools\Facades\SEOMeta;
 use Illuminate\Http\Request;
+use Artesaos\SEOTools\Facades\SEOTools;
 
 class HomeController extends FrontendController
 {
@@ -16,8 +19,20 @@ class HomeController extends FrontendController
     {
        parent::__construct();
     }
-    public function index()
+    public function index(Request $request)
     {
+        $categories = Category::where([
+            'c_active' => Category::STATUS_PUBLIC
+        ])->get();
+        SEOTools::setTitle('Trang chủ');
+        SEOTools::setDescription('Nơi cung cấp các sản phẩm công nghệ cao cấp!!');
+        SEOTools::opengraph()->setUrl($request->url());
+        SEOTools::setCanonical($request->url());
+        foreach ($categories as $category){
+            SEOMeta::addKeyword([$category->c_name]);
+        }
+
+//        OpenGraph::addImage($request->url().pare_url_file($system->pro_avatar), ['height' => 300, 'width' => 300]);
         $productHot = Product::where([
             'pro_hot' => Product::STATUS_hot,
             'pro_active' => Product::STATUS_PUBLIC

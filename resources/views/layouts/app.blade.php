@@ -7,12 +7,21 @@
 <!--[if (gt IE 9)|!(IE)]><!-->
 <html class="no-js" lang="">
 <head>
-    <style>
-        #scrollUp{
-            bottom: 120px !important;
-            left: 30px !important;
-        }
-    </style>
+
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
+    <meta name="google-site-verification" content="nRP-7xNgZ6fz6m-C4GWpUojdIKTlNgGY2Y4pw4Ewh1E" />
+    <meta content="INDEX,FOLLOW" name="robots" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+{{--    {!! SEOMeta::generate() !!}--}}
+{{--    {!! dd(OpenGraph::generate()) !!}--}}
+    {!! SEO::generate() !!}
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="vi_VN" />
+    <meta property="fb:pages" content="{{isset($system->sys_fb) ? $system->sys_fb : ""}}" />
+
+{{--    <meta name="description" content="">--}}
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-6KERMWM4JG"></script>
     <script>
@@ -22,13 +31,12 @@
 
         gtag('config', 'G-6KERMWM4JG');
     </script>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="google-site-verification" content="nRP-7xNgZ6fz6m-C4GWpUojdIKTlNgGY2Y4pw4Ewh1E" />
-    <title>Lavoro | Home 1</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <style>
+        #scrollUp{
+            bottom: 120px !important;
+            left: 30px !important;
+        }
+    </style>
     <!-- Favicon
     ============================================ -->
     <link rel="shortcut icon" type="image/x-icon" href="{{asset('themes_template/img/favicon.ico')}}">

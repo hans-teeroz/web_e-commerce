@@ -6,18 +6,22 @@ use App\Http\Requests\RequestPassword;
 use App\Models\Order;
 use App\Models\Transaction;
 use App\User;
+use Artesaos\SEOTools\Facades\SEOTools;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends FrontendController
 {
-    public function index()
+    public function index(Request $request)
     {
         $transactions = Transaction::where('tr_user_id',get_data_user('web'))->orderByDesc('id')->paginate(10);
         $transactionTotal = Transaction::where('tr_user_id',get_data_user('web'))->select('id')->count();
         $transactionDone = Transaction::where('tr_user_id',get_data_user('web'))->where('tr_status' ,Transaction::STATUS_PUBLIC)->select('id')->count();
-
+        SEOTools::setTitle('Đơn hàng');
+        SEOTools::setDescription('Xem chi tiết đơn hàng của bạn');
+        SEOTools::opengraph()->setUrl($request->url());
+        SEOTools::setCanonical($request->url());
         $viewData = [
             'transactionDone'  => $transactionDone,
             'transactionTotal' => $transactionTotal,
@@ -26,8 +30,12 @@ class UserController extends FrontendController
         return view('user.transaction', $viewData);
     }
 
-    public function updateUser()
+    public function updateUser(Request $request)
     {
+        SEOTools::setTitle('Tài khoản');
+        SEOTools::setDescription('Cập nhật thông tin của bạn');
+        SEOTools::opengraph()->setUrl($request->url());
+        SEOTools::setCanonical($request->url());
         return view('user.index');
     }
     public function saveupdateUser(Request $request)
@@ -50,8 +58,12 @@ class UserController extends FrontendController
 
         return redirect()->back()->with('success','Cập nhật thông tin thành công!');
     }
-    public function updatePassword()
+    public function updatePassword(Request $request)
     {
+        SEOTools::setTitle('Tài khoản');
+        SEOTools::setDescription('Thay đổi mật khẩu của bạn');
+        SEOTools::opengraph()->setUrl($request->url());
+        SEOTools::setCanonical($request->url());
         return view('user.password_user');
     }
     public function saveupdatePassword(RequestPassword $requestPassword)

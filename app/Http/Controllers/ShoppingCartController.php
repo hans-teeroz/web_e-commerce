@@ -6,6 +6,7 @@ use App\Http\Requests\RequestTransaction;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Transaction;
+use Artesaos\SEOTools\Facades\SEOTools;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Srmklive\PayPal\Services\ExpressCheckout;
@@ -46,8 +47,12 @@ class ShoppingCartController extends FrontendController
 
         return redirect()->back()->with('success','Đã thêm vào giỏ hàng thành công');
     }
-    public function getListShoppingCart()
+    public function getListShoppingCart(Request $request)
     {
+        SEOTools::setTitle('Giỏ hàng');
+        SEOTools::setDescription('Shopping theo phong cách của bạn');
+        SEOTools::opengraph()->setUrl($request->url());
+        SEOTools::setCanonical($request->url());
         $products = \Cart::content();
         //dd($products);
         return view('shopping.index', compact('products'));
