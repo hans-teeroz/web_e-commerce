@@ -38,8 +38,8 @@
                                 <ul class="restrain sub-menu">
                                     <li><a href="#">Về chúng tôi</a></li>
                                     <li><a href="{{route('get.contact')}}">Liên hệ</a></li>
-                                    <li><a href="{{route('get.form.pay')}}">Checkout</a></li>
-                                    <li><a href="#">Wishlist</a></li>
+                                    <li><a href="{{route('get.form.pay')}}">Thanh toán</a></li>
+                                    <li><a href="{{route('get.form.wishlist')}}">Danh sách yêu thích</a></li>
                                 </ul>
                             </li>
                             <li class="expand"><a href="{{route('get.list.article')}}">Bài viết</a></li>
@@ -219,9 +219,9 @@
                                     <li><a href="{{route('user.dashboard')}}">Tài khoản</a></li>
                                     <li><a href="{{route('user.update.password')}}">Đổi mật khẩu</a></li>
                                     <li><a href="{{route('user.transaction.dashboard')}}">Đơn hàng của bạn</a></li>
-                                    <li><a href="#">Danh sách yêu thích</a></li>
+                                    <li><a href="{{route('get.form.wishlist')}}">Danh sách yêu thích</a></li>
                                     <li><a href="{{route('get.list.shopping.cart')}}">Giỏ hàng</a></li>
-                                    <li><a href="#">Thanh toán</a></li>
+                                    <li><a href="{{route('get.form.pay')}}">Thanh toán</a></li>
                                     <li><a href="{{route('get.logout.user')}}">Đăng xuất</a></li>
                                 </ul>
                             @else

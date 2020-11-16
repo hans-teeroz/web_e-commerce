@@ -54,6 +54,7 @@ Route::group(['prefix' => 'gio-hang','middleware' => 'CheckLoginUser'],function 
     Route::get('paypal-callback','ShoppingCartController@payPalSuccess')->name('get.paypal.success');
     Route::get('thanh-toan-vnpay','ShoppingCartController@vnPaySuccess')->name('get.vnpay.success');
 });
+
 Route::group(['prefix' => 'ajax'],function (){
     Route::post('/view-product','HomeController@viewedProduct')->name('post.product.view');
 
@@ -66,6 +67,9 @@ Route::group(['prefix' => 'user','middleware' => 'CheckLoginUser'],function (){
     Route::post('/password','UserController@saveupdatePassword');
     Route::get('/transaction','UserController@index')->name('user.transaction.dashboard');
     Route::get('/view/{id}', 'UserController@viewOrders')->name('user.get.view.order');
+    Route::get('/danh-sach-yeu-thich','WishlistController@index')->name('get.form.wishlist');
+    Route::post('/danh-sach-yeu-thich/{id}','WishlistController@saveWishlist')->name('post.form.wishlist');
+    Route::get('/{action}/{id}', 'WishlistController@action')->name('get.action.wishlist');
 });
 
 Route::get('lien-he','ContactController@getContact')->name('get.contact');

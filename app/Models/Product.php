@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
@@ -43,5 +44,9 @@ class Product extends Model
     public function category()
     {
         return $this->belongsTo(Category::class, 'pro_category_id');
+    }
+    public function wishlist()
+    {
+        return $this->belongsToMany(User::class,'wishlists','w_product_id','w_user_id');
     }
 }

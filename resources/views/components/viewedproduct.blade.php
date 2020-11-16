@@ -32,7 +32,7 @@
                                                 <div class="action-buttons">
                                                     <div class="add-to-links">
                                                         <div class="add-to-wishlist">
-                                                            <a href="#" title="Add to Wishlist"><i class="fa fa-heart"></i></a>
+                                                            <a href="{{route('post.form.wishlist', [$product->id])}}" title="Add to Wishlist" class="{{get_data_user('web') ? 'js-wish-list1' : 'js-show-login1'}}"><i class="fa fa-heart"></i></a>
                                                         </div>
                                                         <div class="compare-button">
                                                             <a href="{{route('add.shopping.cart',$product->id)}}" title="Add to Cart"><i class="icon-bag"></i></a>
@@ -43,12 +43,13 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="price-box">
-                                                <span class="new-price">{{number_format(($product->pro_price-($product->pro_price*$product->pro_sale)/100))}} VNĐ</span>
-                                            </div>
-                                            {{--                                                    <div class="price-box">--}}
-                                            {{--                                                        <span class="new-price">{{number_format($product->pro_price)}} VNĐ</span>--}}
-                                            {{--                                                    </div>--}}
+                                                <div class="price-box">
+                                                    <span class="new-price" style="{{$product->pro_sale > 0 ?  'text-decoration: line-through' : ''}}">{{number_format($product->pro_price)}} VNĐ</span>
+                                                    <br>
+                                                    @if(isset($product->pro_sale) && $product->pro_sale > 0)
+                                                        <span class="new-price" style="color: red">Sale: {{number_format(($product->pro_price-($product->pro_price*$product->pro_sale)/100))}} VNĐ</span>
+                                                    @endif
+                                                </div>
                                         </div>
                                         <div class="product-content">
                                             <h2 class="product-name"><a href="{{route('get.detail.product', [$product->pro_slug])}}">{{$product->pro_name}}</a></h2>

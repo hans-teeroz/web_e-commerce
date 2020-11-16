@@ -16,7 +16,7 @@
             <tr>
                 <td>{{$i}}</td>
                 <td>
-                    <dt class="title text-truncate"><a href="{{route('get.detail.product', [$order->getTran->pro_slug,$order->or_product_id])}}" target="_blank">{{isset($order->getTran->pro_name) ? $order->getTran->pro_name : '[N\A]'}} </a></dt>
+                    <dt class="title text-truncate"><a href="{{route('get.detail.product', [$order->getTran->pro_slug])}}" target="_blank">{{isset($order->getTran->pro_name) ? $order->getTran->pro_name : '[N\A]'}} </a></dt>
                     <dt>Giá sản phẩm: {{number_format(($order->or_price))}} VNĐ</dt>
                     <dt>Sales: {{$order->or_sale}} %</dt>
 {{--                    <dt>Số lượng trong kho: {{$order->getTran->pro_number}} - <span class="label {{$order->getTran->pro_number < 1 ? 'label-danger' : 'label-success'}}">{{$order->getTran->pro_number < 1 ? 'Tạm hết hàng' : 'Còn hàng'}}</span></dt>--}}
