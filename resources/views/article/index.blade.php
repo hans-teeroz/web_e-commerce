@@ -62,9 +62,9 @@
                     <div class="row">
                         <div class="col-md-12">
                             <nav aria-label="Page navigation">
-{{--                                @if(isset($productsCate))--}}
-{{--                                    {{ $productsCate->appends(Request::all())->links('vendor.pagination.default') }}--}}
-{{--                                @endif--}}
+                                @if(isset($articles))
+                                    {{ $articles->appends(Request::all())->links('vendor.pagination.default') }}
+                                @endif
                             </nav>
                         </div><!-- end col -->
                     </div><!-- end row -->

@@ -287,7 +287,7 @@
 
                             <!-- product-row end -->
                             @if(isset($products))
-                                {{$products->appends($query)->links()}}
+                                    {{ $products->appends(Request::all())->links('vendor.pagination.default') }}
                             @endif
                         </div>
                         <!-- list view -->

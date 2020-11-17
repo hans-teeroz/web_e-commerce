@@ -90,7 +90,7 @@ class CategoryController extends FrontendController
                     $products->orderBy('id','DESC');
             }
         }
-        $products = $products->paginate(1);
+        $products = $products->paginate(6);
         $slidecate = Slide::where([
 //            'sls_active' => Slide::SLS_ACTIVE,
             'sls_banner_category' => Slide::SLS_BANNER_ACTIVE

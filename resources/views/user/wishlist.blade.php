@@ -55,7 +55,9 @@
                                                                 </tr>
                                                                 </tfoot>
                                                             </table>
-                                                            {{$products->appends(Request::all())->links()}}
+                                                            @if(isset($products))
+                                                                {{ $products->appends(Request::all())->links('vendor.pagination.default') }}
+                                                            @endif
                                                         </div>
                                                         <!-- /.box-body -->
                                                     </div>

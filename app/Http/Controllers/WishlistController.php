@@ -6,7 +6,7 @@ use App\Models\Product;
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
 
-class WishlistController extends Controller
+class WishlistController extends FrontendController
 {
     public function index()
     {

@@ -135,7 +135,9 @@
                                                                 </tr>
                                                                 </tfoot>
                                                             </table>
-                                                            {{$transactions->appends(Request::all())->links()}}
+                                                            @if(isset($transactions))
+                                                                {{ $transactions->appends(Request::all())->links('vendor.pagination.default') }}
+                                                            @endif
                                                         </div>
                                                         <!-- /.box-body -->
                                                     </div>
