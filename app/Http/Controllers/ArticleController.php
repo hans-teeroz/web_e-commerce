@@ -45,7 +45,7 @@ class ArticleController extends FrontendController
         SEOTools::setCanonical($request->url());
         $articles = Article::where([
             'a_active' => Article::STATUS_PUBLIC,
-        ])->orderByDesc('id')->get();
+        ])->orderByDesc('id')->paginate(5);
         $articlesHot = Article::where([
             'a_active' => Article::STATUS_PUBLIC,
             'a_hot'     => Article::HOT

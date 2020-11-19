@@ -4,12 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\Wishlist;
+use Artesaos\SEOTools\Facades\SEOTools;
 use Illuminate\Http\Request;
 
 class WishlistController extends FrontendController
 {
-    public function index()
+    public function index(Request $request)
     {
+        SEOTools::setTitle('Danh sách yêu thích');
+        SEOTools::setDescription('Danh sách yêu thích của bạn', 'UTF-8');
+        SEOTools::opengraph()->setUrl($request->url());
+        SEOTools::setCanonical($request->url());
         $userId =get_data_user('web');
         $products = Product::whereHas('wishlist', function ($query) use ($userId){
             $query->where('w_user_id',$userId);

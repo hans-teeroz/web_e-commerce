@@ -6,7 +6,7 @@
                 <div class="customer-register my-account">
                     <div style="border-bottom:1px solid #d3d3d3;" class="form-fields" >
                         <div class="col-md-12 col-xs-12">
-                            <h4>Danh sách yêu của bạn</h4>
+                            <h4>Danh sách yêu thích của bạn</h4>
                             <section class="content">
                                 <div class="container-fluid">
                                     <div class="row">

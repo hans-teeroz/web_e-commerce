@@ -79,8 +79,12 @@ class ShoppingCartController extends FrontendController
         //return redirect()->back()->with('success','Cập nhật giỏ hàng thành công');
     }
 
-    public function getFromPay()
+    public function getFromPay(Request $request)
     {
+        SEOTools::setTitle('Thanh toán');
+        SEOTools::setDescription('Thanh toán đơn hàng của bạn', 'UTF-8');
+        SEOTools::opengraph()->setUrl($request->url());
+        SEOTools::setCanonical($request->url());
         $products = \Cart::content();
         $totalMoney = str_replace(',','', \Cart::subtotal(0,0));
         if ($totalMoney>0)
