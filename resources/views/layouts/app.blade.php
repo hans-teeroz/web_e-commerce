@@ -106,6 +106,7 @@
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <script src="{{asset('themes_template/js/vendor/modernizr-2.8.3.min.js')}}"></script>
     <script id="mcjs">!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/ed01a85bc2cdeabc7f1031d8d/b198136d453d5d2559ed66544.js");</script>
+    <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5fb72c04b4e0620012389855&product=inline-share-buttons' async='async'></script>
 </head>
 <body class="home-one">
 <!--[if lt IE 8]>

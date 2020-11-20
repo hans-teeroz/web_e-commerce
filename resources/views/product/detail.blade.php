@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <div class="breadcrumbs">
         <div class="container">
             <div class="row">
@@ -110,7 +111,10 @@
                                             </div>
                                     </div>
                                     <div class="singl-share">
-                                        <a href="#"><img src="{{asset('themes_template/img/single-share.png')}}" alt=""></a>
+{{--                                        <div id="fb-root"></div>--}}
+{{--                                        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v9.0&appId=373939303960427&autoLogAppEvents=1" nonce="t8eY4zyl"></script>--}}
+{{--                                        <div class="fb-like" data-href="http://webshopping.com/san-pham/{{$productsDetail->pro_slug}}" data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>--}}
+                                        <div class="sharethis-inline-share-buttons"></div>
                                     </div>
                                 </div>
                             </div>
@@ -122,7 +126,7 @@
                         <!-- Nav tabs -->
                         <ul class="details-tab">
                             <li class="active"><a href="#home" data-toggle="tab">Description</a></li>
-                            <li class=""><a href="#messages" data-toggle="tab"> Review (<span class="fb-comments-count" data-href="http://gearshopping.herokuapp.com/san-pham/{{$productsDetail->pro_slug.'-'.$productsDetail->id}}"></span>)</a></li>
+                            <li class=""><a href="#messages" data-toggle="tab"> Review (<span class="fb-comments-count" data-href="http://gearshopping.herokuapp.com/san-pham/{{$productsDetail->pro_slug}}"></span>)</a></li>
                         </ul>
                         <!-- Tab panes -->
                         <div class="tab-content">
@@ -135,7 +139,7 @@
                                 <div class="">
                                     <div id="fb-root"></div>
                                     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v8.0&appId=373939303960427&autoLogAppEvents=1" nonce="IVvASBbL"></script>
-                                    <div class="fb-comments" data-href="http://gearshopping.herokuapp.com/san-pham/{{$productsDetail->pro_slug.'-'.$productsDetail->id}}" data-numposts="5" data-width="1140" data-lazy="true" data-include-parent="true"></div>
+                                    <div class="fb-comments" data-href="http://gearshopping.herokuapp.com/san-pham/{{$productsDetail->pro_slug}}" data-numposts="5" data-width="1140" data-lazy="true" data-include-parent="true"></div>
 {{--                                    <div class="fb-comments" data-href="http://webshopping.com/san-pham/{{$productsDetail->pro_slug.'-'.$productsDetail->id}}" data-include-parent="true" data-width="" data-lazy="true"></div>--}}
 {{--                                    <div class="fb-comment-embed" data-href="http://webshopping.com/san-pham/{{$productsDetail->pro_slug.'-'.$productsDetail->id}}" data-numposts="5" data-width=""></div>--}}
 {{--                                    <div class="comments-area">--}}
@@ -238,7 +242,7 @@
                                                             <div class="action-buttons">
                                                                 <div class="add-to-links">
                                                                     <div class="add-to-wishlist">
-                                                                        <a href="{{route('get.detail.product', [$product->pro_slug])}}" title="Add to Wishlist"><i class="fa fa-heart"></i></a>
+                                                                        <a href="{{route('post.form.wishlist', [$product->id])}}" title="Add to Wishlist" class="{{get_data_user('web') ? 'js-wish-list' : 'js-show-login'}}"><i class="fa fa-heart"></i></a>
                                                                     </div>
                                                                     <div class="compare-button">
                                                                         <a href="{{route('add.shopping.cart',$product->id)}}" title="Thêm vào giỏ hàng"><i class="icon-bag"></i></a>
@@ -312,5 +316,24 @@
                 //console.log(products);
             }
         });
+        $(function () {
+            $(".js-wish-list").click(function (event) {
+                event.preventDefault();
+                let $this = $(this);
+                let url = $this.attr('href');
+                if (url){
+                    $.ajax({
+                        method: "POST",
+                        url : url
+                    }).done(function (result) {
+                        alert(result.msg);
+                    })
+                }
+            })
+            $(".js-show-login").click(function (event) {
+                event.preventDefault();
+                alert("Bạn cần đăng nhập để sử dụng chức năng này");
+            })
+        })
     </script>
 @stop

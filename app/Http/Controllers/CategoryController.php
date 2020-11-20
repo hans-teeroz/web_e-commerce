@@ -13,6 +13,7 @@ class CategoryController extends FrontendController
 {
     public function getListProduct(Request $request)
     {
+
         $url = $request->segment(2);
         //$url = preg_split('/(-)/i',$url);
         $slug = Category::where('c_slug',$url)->select('id')->pluck('id');
@@ -38,8 +39,9 @@ class CategoryController extends FrontendController
 //        }
         if ($request->search_product)
         {
-            $products = $products->where('pro_name','like','%'.$request->search_product.'%');
+            $products= $products->where('pro_name','like','%'.$request->search_product.'%');
         }
+
         if ($request->price)
         {
             $price = $request->price;
@@ -91,18 +93,66 @@ class CategoryController extends FrontendController
             }
         }
         $products = $products->paginate(6);
-        $slidecate = Slide::where([
-//            'sls_active' => Slide::SLS_ACTIVE,
-            'sls_banner_category' => Slide::SLS_BANNER_ACTIVE
-        ])->orderByDesc('id')->limit(1)->get();
+//        $slidecate = Slide::where([
+////            'sls_active' => Slide::SLS_ACTIVE,
+//            'sls_banner_category' => Slide::SLS_BANNER_ACTIVE
+//        ])->orderByDesc('id')->limit(1)->get();
         $viewData = [
             'products'           => $products,
             'cateProduct'       => $cateProduct,
             'query'             => $request->query(),
-            'slidecate'         => $slidecate
+            //'slidecate'         => $slidecate,
         ];
 
         return view('product.index', $viewData);
 
     }
+    public function getListSearchProduct(Request $request)
+    {
+        if (trim($request->search_product) != '')
+        {
+            SEOTools::setTitle('Sản phẩm');
+            SEOTools::setDescription($request->search_product);
+            SEOTools::opengraph()->setUrl($request->url());
+            SEOTools::setCanonical($request->url());
+            SEOMeta::addKeyword([$request->search_product]);
+            $product = Product::where('pro_active', Product::STATUS_PUBLIC);
+            $products= $product->where('pro_name','like','%'.$request->search_product.'%');
+            if ($request->price)
+            {
+                $price = $request->price;
+                switch ($price)
+                {
+                    case '1':
+                        $products->where('pro_price','<',1000000);
+                        break;
+                    case '2':
+                        $products->whereBetween('pro_price',[1000000,5000000]);
+                        break;
+                    case '3':
+                        $products->whereBetween('pro_price',[5000000,9000000]);
+                        break;
+                    case '4':
+                        $products->whereBetween('pro_price',[9000000,15000000]);
+                        break;
+                    case '5':
+                        $products->whereBetween('pro_price',[15000000,20000000]);
+                        break;
+                    case '6':
+                        $products->where('pro_price','>',20000000);
+                        break;
+
+                }
+            }
+            $products = $product->paginate(6);
+            $viewData = [
+                'products'           => $products,
+                //'cateProduct'       => $cateProduct,
+                'query'             => $request->query(),
+            ];
+            return view('product.search_product', $viewData);
+        }
+        return redirect('/')->with('warning','Tìm kiếm không hợp lệ!');
+    }
+
 }

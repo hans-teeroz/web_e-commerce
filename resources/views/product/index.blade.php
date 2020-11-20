@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <style>
         .sidebar-content .active
         {
@@ -26,6 +27,8 @@
                             </li>
                             @if(isset($cateProduct->c_name))
                                 <li class="category3"><span>{{ $cateProduct->c_name }}</span></li>
+                            @else
+                                <li class="category3"><span>Sản phẩm</span></li>
                             @endif
                         </ul>
                     </div>
@@ -253,7 +256,7 @@
                                                                 <div class="action-buttons">
                                                                     <div class="add-to-links">
                                                                         <div class="add-to-wishlist">
-                                                                            <a href="{{route('get.detail.product', [$product->pro_slug])}}" title="Add to Wishlist"><i class="fa fa-heart"></i></a>
+                                                                            <a href="{{route('post.form.wishlist', [$product->id])}}" title="Add to Wishlist" class="{{get_data_user('web') ? 'js-wish-list' : 'js-show-login'}}"><i class="fa fa-heart"></i></a>
                                                                         </div>
                                                                         <div class="compare-button">
                                                                             <a href="{{route('add.shopping.cart',$product->id)}}" title="Thêm vào giỏ hàng"><i class="icon-bag"></i></a>
@@ -378,10 +381,35 @@
 @stop
 @section('script')
     <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
         $(function () {
             $('.orderby').change(function () {
                 $("#form_oder").submit();
 
+            })
+        })
+
+        $(function () {
+            $(".js-wish-list").click(function (event) {
+                event.preventDefault();
+                let $this = $(this);
+                let url = $this.attr('href');
+                if (url){
+                    $.ajax({
+                        method: "POST",
+                        url : url
+                    }).done(function (result) {
+                        alert(result.msg);
+                    })
+                }
+            })
+            $(".js-show-login").click(function (event) {
+                event.preventDefault();
+                alert("Bạn cần đăng nhập để sử dụng chức năng này");
             })
         })
     </script>

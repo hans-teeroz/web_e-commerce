@@ -75,7 +75,7 @@ Route::group(['prefix' => 'user','middleware' => 'CheckLoginUser'],function (){
 Route::get('lien-he','ContactController@getContact')->name('get.contact');
 Route::post('lien-he','ContactController@saveContact');
 
-Route::get('san-pham', 'CategoryController@getListProduct')->name('get.search.product');
+Route::get('san-pham', 'CategoryController@getListSearchProduct')->name('get.search.product');
 Route::get('sitemap', function (){
     SitemapGenerator::create('http://gearshopping.herokuapp.com')->writeToFile('sitemap_com1.xml');
     return 'Created sitemap!!';
