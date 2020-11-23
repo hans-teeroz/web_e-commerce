@@ -80,3 +80,7 @@ Route::get('sitemap', function (){
     SitemapGenerator::create('http://gearshopping.herokuapp.com')->writeToFile('sitemap_com1.xml');
     return 'Created sitemap!!';
 });
+Route::get('/sitemap1.xml/articles', 'SitemapController@articles');
+Route::get('/sitemap1.xml', 'SitemapController@index');
+Route::get('/sitemap1.xml/categories', 'SitemapController@categories');
+Route::get('/sitemap1.xml/products', 'SitemapController@products');
