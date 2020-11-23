@@ -12,7 +12,8 @@ class SitemapController extends Controller
 {
     public function index(Request $request)
     {
-        $url = explode('/sitemap1.xml/',$request->url(),2)[0];
+        $url = $request->url();
+        dd($url);
         $articles = Article::all()->first();
         $categories = Category::all()->first();
         $products = Product::all()->first();

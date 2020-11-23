@@ -2,13 +2,13 @@
 
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <sitemap>
-        <loc>{{$url}}/sitemap1.xml/articles</loc>
+        <loc>{{$url}}/articles</loc>
     </sitemap>
     <sitemap>
-        <loc>{{$url}}/sitemap1.xml/categories</loc>
+        <loc>{{$url}}/categories</loc>
     </sitemap>
     <sitemap>
-        <loc>{{$url}}/sitemap1.xml/products</loc>
+        <loc>{{$url}}/products</loc>
     </sitemap>
 
 </sitemapindex>
